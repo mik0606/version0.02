@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Index from "./pages/Index";
 import Products from "./pages/Products";
 import Hospital from "./pages/products/Hospital";
@@ -14,6 +15,7 @@ import Hotel from "./pages/products/Hotel";
 import Survey from "./pages/products/Survey";
 import Marketing from "./pages/products/Marketing";
 import NotFound from "./pages/NotFound";
+import ContactUs from "./pages/ContactUs"; // ✅ NEW PAGE
 
 const queryClient = new QueryClient();
 
@@ -24,7 +26,10 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* ✅ Home */}
           <Route path="/" element={<Index />} />
+
+          {/* ✅ Product Pages */}
           <Route path="/products" element={<Products />} />
           <Route path="/products/hospital" element={<Hospital />} />
           <Route path="/products/transport" element={<Transport />} />
@@ -34,7 +39,11 @@ const App = () => (
           <Route path="/products/hotel" element={<Hotel />} />
           <Route path="/products/survey" element={<Survey />} />
           <Route path="/products/marketing" element={<Marketing />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+          {/* ✅ Contact Page */}
+          <Route path="/contact" element={<ContactUs />} />
+
+          {/* ✅ 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

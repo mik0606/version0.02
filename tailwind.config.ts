@@ -21,27 +21,27 @@ export default {
     },
     extend: {
       colors: {
-        border: "#d4a373",
-        input: "#fff7ed",
-        ring: "#f59e0b",
-        background: "#fffaf0",
-        foreground: "#3b2f2f",
-        primary: { DEFAULT: "#dc2626", foreground: "#ffffff" },
-        secondary: { DEFAULT: "#fcd34d", foreground: "#3b2f2f" },
-        destructive: { DEFAULT: "#b91c1c", foreground: "#ffffff" },
-        muted: { DEFAULT: "#f5e0c3", foreground: "#3b2f2f" },
-        accent: { DEFAULT: "#d97706", foreground: "#ffffff" },
-        popover: { DEFAULT: "#ffffff", foreground: "#3b2f2f" },
-        card: { DEFAULT: "#ffffff", foreground: "#3b2f2f" },
+        border: "#B0E0E6", // light cyan border
+        input: "#F8FAFC", // subtle white-blue input bg
+        ring: "#00CED1",  // cyan accent ring
+        background: "#FFFFFF", // white background
+        foreground: "#001F3F", // deep navy text
+        primary: { DEFAULT: "#00CED1", foreground: "#FFFFFF" }, // main logo blue
+        secondary: { DEFAULT: "#99CC00", foreground: "#FFFFFF" }, // accent green from tree
+        destructive: { DEFAULT: "#1E3A8A", foreground: "#FFFFFF" }, // dark navy
+        muted: { DEFAULT: "#E0F7FA", foreground: "#003B5C" }, // soft teal muted tone
+        accent: { DEFAULT: "#0077B6", foreground: "#FFFFFF" }, // ocean blue accent
+        popover: { DEFAULT: "#FFFFFF", foreground: "#001F3F" },
+        card: { DEFAULT: "#FFFFFF", foreground: "#001F3F" },
       },
       backgroundImage: {
-        "gradient-primary": "linear-gradient(to right, #dc2626, #f59e0b)",
-        "gradient-dark": "linear-gradient(to right, #fffaf0, #f5e0c3)",
-        "gradient-hero": "linear-gradient(135deg, #dc2626, #f59e0b)",
+        "gradient-primary": "linear-gradient(to right, #00CED1, #0077B6)",
+        "gradient-dark": "linear-gradient(to right, #E0F7FA, #B0E0E6)",
+        "gradient-hero": "linear-gradient(135deg, #00CED1, #0077B6)",
       },
       boxShadow: {
-        glow: "0 0 25px #f59e0b33",
-        card: "0 4px 20px #d4a37333",
+        glow: "0 0 25px #00CED133",
+        card: "0 4px 20px #0077B633",
       },
       borderRadius: {
         lg: "12px",
@@ -55,7 +55,7 @@ export default {
         "fade-in-up": { from: { opacity: "0", transform: "translateY(40px)" }, to: { opacity: "1", transform: "translateY(0)" } },
         "scale-in": { from: { opacity: "0", transform: "scale(0.9)" }, to: { opacity: "1", transform: "scale(1)" } },
         "slide-in-right": { from: { transform: "translateX(100%)" }, to: { transform: "translateX(0)" } },
-        glow: { "0%, 100%": { boxShadow: "0 0 20px #f59e0b33" }, "50%": { boxShadow: "0 0 40px #f59e0b66" } },
+        glow: { "0%, 100%": { boxShadow: "0 0 20px #00CED133" }, "50%": { boxShadow: "0 0 40px #00CED166" } },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
