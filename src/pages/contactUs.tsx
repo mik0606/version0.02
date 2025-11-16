@@ -1,188 +1,272 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { Mail, Phone, MapPin } from "lucide-react";
 
-const ContactUs: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("americas");
+const ContactUs = () => {
+  const { toast } = useToast();
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    jobFunction: "",
+    jobTitle: "",
+    email: "",
+    phone: "",
+    country: "",
+    inquiryType: "",
+    comments: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Form submitted!",
+      description: "We'll get back to you as soon as possible.",
+    });
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
-    <>
-      {/* NAVIGATION ALWAYS ON TOP */}
+    <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* TOP CONTACT SECTION */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-20 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+      <div className="container mx-auto px-4 pt-24 pb-12 md:pb-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start max-w-7xl mx-auto">
 
-          {/* LEFT TEXT */}
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          {/* LEFT SIDE */}
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight">
               GETTING IN TOUCH
             </h1>
 
-            <p className="text-gray-600 mb-4">
-              Do you have a question or need more details? Please enter your
-              information and detailed message, and we'll get back to you as
-              soon as possible. Thanks!
-            </p>
+            <div className="space-y-4 text-muted-foreground text-base md:text-lg">
+              <p>
+                Do you have a question or need more info? Please enter your
+                information and describe your inquiry, and we'll get back to you
+                as soon as possible.
+              </p>
 
-            <p className="text-gray-600 mb-4">
-              We are not accepting job applications from this form. Please visit
-              our careers page for available positions.
-            </p>
+              <p>
+                We do not accept job applications from this form. Please visit{" "}
+                <a href="#" className="text-accent hover:underline font-medium">
+                  our careers page
+                </a>
+                .
+              </p>
 
-            <p className="text-gray-600 mb-4">
-              For product support, please open a ticket through the support
-              portal.
-            </p>
+              <p>
+                Looking for product support?{" "}
+                <a href="#" className="text-accent hover:underline font-medium">
+                  Open a support ticket
+                </a>
+                .
+              </p>
 
-            <p className="text-gray-600">
-              Need employment verification for a team member? Click here.
-            </p>
-          </div>
+              <p>
+                Need an <strong>Employment Verification</strong>?{" "}
+                <a href="#" className="text-accent hover:underline font-medium">
+                  Click here
+                </a>
+                .
+              </p>
+            </div>
 
-          {/* RIGHT FORM (Snowflake style) */}
-          <div className="bg-white shadow-xl rounded-2xl p-10 border border-gray-200">
+            {/* OFFICES */}
+            <div className="bg-card border border-border rounded-lg p-6 md:p-8 shadow-sm">
+              <h3 className="text-lg font-semibold">Our Offices</h3>
+              <p className="text-sm text-muted-foreground mt-2">
+                Pick a location to view details.
+              </p>
 
-  <form className="space-y-6">
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-    <div>
-      <label className="contactLabel">First Name *</label>
-      <input className="contactLineInput" />
-    </div>
+                {/* Canada */}
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Toronto"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-background rounded-md p-4 border border-border hover:shadow-lg hover:-translate-y-1 transition-all"
+                >
+                  <h4 className="font-semibold">Canada</h4>
+                  <p className="text-sm text-muted-foreground mt-1">Toronto, ON</p>
 
-    <div>
-      <label className="contactLabel">Last Name *</label>
-      <input className="contactLineInput" />
-    </div>
+                  <div className="mt-3 space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center space-x-2">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span>123 King St W</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Phone className="w-4 h-4 text-primary" />
+                      <span>+1 (416) 000-0000</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Mail className="w-4 h-4 text-primary" />
+                      <span>canada@movicloud.com</span>
+                    </div>
+                  </div>
+                </a>
 
-    <div>
-      <label className="contactLabel">Company Name *</label>
-      <input className="contactLineInput" />
-    </div>
+                {/* Dubai */}
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Dubai"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-background rounded-md p-4 border border-border hover:shadow-lg hover:-translate-y-1 transition-all"
+                >
+                  <h4 className="font-semibold">Dubai</h4>
+                  <p className="text-sm text-muted-foreground mt-1">UAE</p>
+                  <div className="mt-3 space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center space-x-2">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span>DIFC, Dubai</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Phone className="w-4 h-4 text-primary" />
+                      <span>+971 4 000 000</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Mail className="w-4 h-4 text-primary" />
+                      <span>dubai@movicloud.com</span>
+                    </div>
+                  </div>
+                </a>
 
-    <div>
-      <label className="contactLabel">Job Function</label>
-      <input className="contactLineInput" />
-    </div>
+                {/* India */}
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Bengaluru"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-background rounded-md p-4 border border-border hover:shadow-lg hover:-translate-y-1 transition-all"
+                >
+                  <h4 className="font-semibold">India</h4>
+                  <p className="text-sm text-muted-foreground mt-1">Bengaluru</p>
+                  <div className="mt-3 space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center space-x-2">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span>Whitefield</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Phone className="w-4 h-4 text-primary" />
+                      <span>+91 00000 00000</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Mail className="w-4 h-4 text-primary" />
+                      <span>india@movicloud.com</span>
+                    </div>
+                  </div>
+                </a>
 
-    <div>
-      <label className="contactLabel">Job Title *</label>
-      <input className="contactLineInput" />
-    </div>
-
-    <div>
-      <label className="contactLabel">Email Address *</label>
-      <input className="contactLineInput" />
-    </div>
-
-    <div>
-      <label className="contactLabel">Phone Number *</label>
-      <input className="contactLineInput" />
-    </div>
-
-    <div>
-      <label className="contactLabel">Country *</label>
-      <select className="contactLineInput selectArrow appearance-none pr-10">
-        <option>Select</option>
-      </select>
-    </div>
-
-    <div>
-      <label className="contactLabel">Inquiry Type *</label>
-      <select className="contactLineInput selectArrow appearance-none pr-10">
-        <option>Select</option>
-      </select>
-    </div>
-
-    <div>
-      <label className="contactLabel">Comments</label>
-      <textarea className="w-full border border-[#0b4779] rounded-md p-3 text-sm h-24"></textarea>
-    </div>
-
-    <p className="text-xs text-gray-500 leading-relaxed">
-      By submitting this form, I understand Snowflake will process my personal
-      information in accordance with their Privacy Notice. I may withdraw my
-      consent or update preferences at any time.
-    </p>
-
-    <button
-      type="submit"
-      className="mt-2 bg-[#00a1e0] text-white px-9 py-2 rounded-full text-sm font-semibold hover:bg-[#0b91cb] transition"
-    >
-      SUBMIT
-    </button>
-
-  </form>
-
-</div>
-        </div>
-      </section>
-
-      {/* OFFICE LOCATIONS SECTION */}
-      <div className="bg-gray-100 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-
-          <h2 className="text-center text-xl font-semibold tracking-wide mb-10">
-            OFFICE LOCATIONS
-          </h2>
-
-          {/* Tabs */}
-          <div className="flex justify-center gap-6 mb-8">
-            {["americas", "emea", "apj"].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`uppercase tracking-wider text-sm pb-1 ${
-                  activeTab === tab
-                    ? "text-blue-600 border-b-2 border-blue-600"
-                    : "text-gray-500"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
-          {/* Office Cards */}
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {officeData[activeTab].map((office, index) => (
-              <div
-                key={index}
-                className="bg-white p-5 shadow-md rounded-xl border text-center"
-              >
-                <h3 className="font-semibold text-gray-800">{office.city}</h3>
-                <p className="text-blue-600 text-sm mb-2">{office.region}</p>
-                <p className="text-gray-600 text-sm">{office.address}</p>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* RIGHT SIDE FORM */}
+          <div className="bg-card rounded-lg p-6 md:p-10 shadow-sm border border-border">
+            <form onSubmit={handleSubmit} className="space-y-6">
+
+              {/* NORMAL INPUT FIELD */}
+              {[
+                ["First Name *", "firstName"],
+                ["Last Name *", "lastName"],
+                ["Company Name *", "companyName"],
+                ["Job Function", "jobFunction"],
+                ["Job Title *", "jobTitle"],
+                ["Email Address *", "email"],
+                ["Phone Number *", "phone"],
+              ].map(([label, field]) => (
+                <div key={field} className="space-y-2">
+                  <label className="text-sm font-medium text-accent">{label}</label>
+                  <Input
+                    required={label.includes("*")}
+                    value={(formData as any)[field]}
+                    onChange={(e) => handleInputChange(field, e.target.value)}
+                    className="border-0 border-b-2 rounded-none px-0 focus:border-accent focus-visible:ring-0"
+                  />
+                </div>
+              ))}
+
+              {/* COUNTRY */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-accent">Country *</label>
+                <Select onValueChange={(value) => handleInputChange("country", value)}>
+                  <SelectTrigger className="border-0 border-b-2 rounded-none px-0 focus:border-accent focus-visible:ring-0">
+                    <SelectValue placeholder="Select country" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="us">United States</SelectItem>
+                    <SelectItem value="uk">United Kingdom</SelectItem>
+                    <SelectItem value="ca">Canada</SelectItem>
+                    <SelectItem value="in">India</SelectItem>
+                    <SelectItem value="au">Australia</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* INQUIRY TYPE */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-accent">Inquiry Type *</label>
+                <Select onValueChange={(value) => handleInputChange("inquiryType", value)}>
+                  <SelectTrigger className="border-0 border-b-2 rounded-none px-0 focus:border-accent focus-visible:ring-0">
+                    <SelectValue placeholder="Select inquiry type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="general">General Inquiry</SelectItem>
+                    <SelectItem value="sales">Sales</SelectItem>
+                    <SelectItem value="support">Support</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* COMMENTS */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-accent">Comments</label>
+                <Textarea
+                  value={formData.comments}
+                  onChange={(e) => handleInputChange("comments", e.target.value)}
+                  className="border border-border rounded-md min-h-[120px]"
+                  placeholder="Describe your inquiry..."
+                />
+              </div>
+
+              {/* SUBMIT */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
+                <div className="text-sm text-muted-foreground">
+                  Prefer to speak directly? Call{" "}
+                  <strong className="text-foreground">+91 00000 00000</strong>
+                </div>
+
+                <Button
+                  type="submit"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground px-12 py-6 text-lg font-medium rounded-full transition-all hover:scale-105"
+                >
+                  SUBMIT
+                </Button>
+              </div>
+
+            </form>
           </div>
         </div>
       </div>
+
       <Footer />
-    </>
+    </div>
   );
 };
 
 export default ContactUs;
-
-/* ---------------- OFFICE DATA ---------------- */
-const officeData = {
-  americas: [
-    { city: "Bozeman", region: "MONTANA, US", address: "529 Emoil Street, Bozeman, MT 59715" },
-    { city: "Menlo Park", region: "CALIFORNIA, US", address: "232 Constitution Drive, Menlo Park, CA" },
-    { city: "Bellevue", region: "WASHINGTON, US", address: "10404 NE 8th Street, Bellevue, WA 98004" },
-    { city: "New York City", region: "NEW YORK, US", address: "120 West 45th Street, NY 10036" },
-    { city: "Denver", region: "COLORADO, US", address: "1700 Broadway, Denver, CO 80290" },
-    { city: "Boston", region: "MASSACHUSETTS, US", address: "87 Seaport Blvd, Boston, MA 02210" },
-    { city: "Atlanta", region: "GEORGIA, US", address: "525 Spring Street NW, Atlanta, GA 30308" },
-    { city: "McLean", region: "VIRGINIA, US", address: "8300 Boone Blvd #500, McLean, VA 22102" },
-    { city: "Chicago", region: "ILLINOIS, US", address: "800 W Madison Street, Chicago, IL" },
-    { city: "Toronto", region: "CANADA", address: "120 Adelaide St W Suite 200, Toronto, ON" },
-  ],
-  emea: [],
-  apj: [],
-};
-
-
-
