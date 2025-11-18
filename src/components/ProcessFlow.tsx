@@ -1,40 +1,130 @@
-import { ClipboardList, Palette, Code, TestTube, Rocket, Settings } from "lucide-react";
+import {
+  ClipboardList,
+  Palette,
+  Code,
+  TestTube,
+  Rocket,
+  Settings,
+} from "lucide-react";
+
+import { motion } from "framer-motion";
 
 const steps = [
-  { icon: ClipboardList, title: "Requirements Gathering", description: "Understanding your vision" },
-  { icon: Palette, title: "UI/UX Design", description: "Creating beautiful interfaces" },
-  { icon: Code, title: "Development", description: "Building robust solutions" },
-  { icon: TestTube, title: "Testing", description: "Ensuring quality" },
-  { icon: Rocket, title: "Phased Deployments", description: "Smooth rollouts" },
-  { icon: Settings, title: "Production & Support", description: "Continuous excellence" },
+  {
+    icon: ClipboardList,
+    step: "STEP 01",
+    title: "Requirements Gathering",
+    description: "We deeply understand your vision, goals, and technical needs.",
+  },
+  {
+    icon: Palette,
+    step: "STEP 02",
+    title: "UI/UX Design",
+    description: "Crafting beautiful and intuitive interfaces for your users.",
+  },
+  {
+    icon: Code,
+    step: "STEP 03",
+    title: "Development",
+    description: "Building robust and scalable digital solutions.",
+  },
+  {
+    icon: TestTube,
+    step: "STEP 04",
+    title: "Testing & QA",
+    description: "Ensuring quality through rigorous testing.",
+  },
+  {
+    icon: Rocket,
+    step: "STEP 05",
+    title: "Phased Deployments",
+    description: "Smooth and stable rollouts.",
+  },
+  {
+    icon: Settings,
+    step: "STEP 06",
+    title: "Production & Support",
+    description: "Monitoring, maintenance and continuous improvements.",
+  },
 ];
+
+// CLEAN fade & slide animation
+const softMotion = {
+  hidden: { opacity: 0, y: 15 },
+  show: { opacity: 1, y: 0 },
+};
 
 export const ProcessFlow = () => {
   return (
-    <section className="py-24 bg-gradient-hero relative overflow-hidden">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Development Process</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A proven methodology that delivers exceptional results every time
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Heading */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={softMotion}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Our Development Process
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            A proven methodology delivering clarity, efficiency & quality.
+          </p>
+        </motion.div>
+
+        {/* 1×6 Row */}
+        <div className="flex justify-between items-start gap-8 lg:scale-100 md:scale-95 sm:scale-90 scale-75 origin-top mx-auto max-w-7xl">
+
           {steps.map((step, index) => (
-            <div
-              key={step.title}
-              className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border hover:border-primary/50 transition-all hover:shadow-glow group animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={softMotion}
+              transition={{ duration: 0.5, delay: index * 0.12 }}
+              className="text-center w-[160px] relative"
             >
-              <div className="w-14 h-14 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <step.icon className="w-7 h-7" />
-              </div>
+              {/* Icon Circle - Gentle Zoom-in */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.12 }}
+                className="w-16 h-16 mx-auto rounded-full border-2 border-primary/30 flex items-center justify-center bg-white shadow-sm mb-4"
+              >
+                <step.icon className="w-7 h-7 text-primary" />
+              </motion.div>
+
+              {/* Step Label */}
+              <p className="text-primary text-sm font-semibold mb-1">
+                {step.step}
+              </p>
+
+              {/* Title */}
               <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-              <p className="text-muted-foreground">{step.description}</p>
-              <div className="mt-4 text-4xl font-bold text-primary/20">{index + 1}</div>
-            </div>
+
+              {/* Description */}
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {step.description}
+              </p>
+
+              {/* Clean Line Wipe Animation */}
+              {index < steps.length - 1 && (
+                <motion.div
+                  initial={{ width: 0, opacity: 0 }}
+                  whileInView={{ width: "80px", opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.12 + 0.3, ease: "easeOut" }}
+                  className="absolute top-8 left-[100%] h-[2px] bg-primary/20"
+                />
+              )}
+            </motion.div>
           ))}
+
         </div>
       </div>
     </section>

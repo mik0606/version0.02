@@ -43,3 +43,7 @@
   color: #3b2f2f; /* foreground color */
 }
 
+
+body {
+  @apply font-sans;
+}

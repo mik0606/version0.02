@@ -12,9 +12,17 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <Hero />
+
+      {/* Divider between Hero → Development */}
+      <div className="w-full h-[1px] bg-blue-400/40 my-12"></div>
+
       <ProcessFlow />
+
+      {/* Divider between Development → Mission/Vision */}
+      <div className="w-full h-[1px] bg-blue-400/40 my-12"></div>
+
       <MissionVision />
-      
+
       {/* CTA Section */}
       <section className="py-24 bg-gradient-hero relative overflow-hidden">
         <div className="container mx-auto px-4 text-center">

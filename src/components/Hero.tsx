@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Shield, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export const Hero = () => {
   const cards = [
@@ -23,155 +24,200 @@ export const Hero = () => {
 
   return (
     <>
-      {/* 🧠 HERO SECTION */}
-      <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden pt-20 bg-background">
-        
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none"></div>
+      {/* HERO SECTION */}
+      <section className="relative w-full bg-white py-20">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
-        {/* LEFT TEXT */}
-        <div className="relative md:w-1/2 flex flex-col justify-center px-6 md:px-16 z-20 text-center md:text-left space-y-6 animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            Building{" "}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Intelligent Enterprise Solutions
-            </span>
-          </h1>
+          {/* LEFT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-6"
+          >
+            {/* HEADING */}
+            <motion.h1
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="font-inter font-bold leading-[1.15] tracking-tight text-[#0C2340] text-5xl md:text-6xl lg:text-7xl"
+            >
+              <span className="block">Building</span>
 
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto md:mx-0">
-            MoviCloud Labs delivers cutting-edge mobile and web applications powered by advanced
-            AI and analytics, transforming how businesses operate and grow.
-          </p>
+              <span
+                className="block font-semibold bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: "linear-gradient(90deg, #00A4C7, #39D98A)",
+                }}
+              >
+                Intelligent Enterprise Solutions
+              </span>
 
-          <div className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4 pt-4">
-            <Link to="/products">
+              <span className="block text-[#21C4A3] text-2xl md:text-3xl font-semibold mt-2">
+                with Analytics & AI Features
+              </span>
+            </motion.h1>
+
+            {/* PARAGRAPH */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="font-inter text-lg md:text-xl text-[#6B7280] max-w-xl leading-relaxed"
+            >
+              MoviCloud Labs specializes in building powerful cloud-based enterprise systems 
+              that boost efficiency across industries. With strong predictive analytics & AI, 
+              we deliver solutions that intelligently optimize your operations.
+            </motion.p>
+
+            {/* BUTTONS */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex flex-row gap-4 pt-2"
+            >
+              <Link to="/products">
+                <Button
+                  size="lg"
+                  className="font-inter text-lg px-8 rounded-full bg-[#00A4C7] hover:bg-[#0090AF] text-white shadow"
+                >
+                  Explore Our Products
+                  <ArrowRight className="ml-2" />
+                </Button>
+              </Link>
+
               <Button
                 size="lg"
-                className="bg-gradient-primary text-lg px-8 shadow-glow hover:scale-105 transition-transform"
+                className="font-inter text-lg px-8 rounded-full bg-[#0C2340] hover:bg-[#071729] text-white shadow"
               >
-                Explore Our Products
-                <ArrowRight className="ml-2" />
+                Book a Demo
               </Button>
-            </Link>
+            </motion.div>
+          </motion.div>
 
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 border-primary text-primary hover:bg-primary hover:text-white transition"
-            >
-              Get a Demo
-            </Button>
-          </div>
-        </div>
-
-        {/* RIGHT IMAGE */}
-        <div className="relative md:w-1/2 flex justify-end z-10 px-6 md:px-16 pointer-events-none">
-          <img
-            src="/Hero.jpg"
-            alt="Hero"
-            className="w-full max-w-lg md:max-w-xl object-contain mix-blend-lighten opacity-90 animate-fade-in"
-          />
+          {/* RIGHT IMAGE ANIMATION */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: [0, -10, 0], // Floating effect
+            }}
+            transition={{
+              duration: 1,
+              ease: "easeOut",
+              y: {
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "loop",
+              },
+            }}
+            className="flex justify-center md:justify-end"
+          >
+            <img
+              src="/Hero.jpg"
+              className="w-full max-w-xl object-contain"
+              alt="Hero"
+            />
+          </motion.div>
         </div>
       </section>
 
-      {/* 🔵 DIVIDER LINE */}
-      <div className="w-full h-[1px] bg-blue-400/40 mt-2 mb-4"></div>
+      {/* Divider */}
+      <div className="w-full h-[1px] bg-blue-400/40 mt-6 mb-8"></div>
 
-      {/* 🌟 PRODUCT SHOWCASE + LAUNCHING 2026 */}
+      {/* Product Showcase */}
       <section className="relative w-full pt-2 pb-8 bg-background">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
           {/* LEFT SIDE */}
-          <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-2xl font-bold mb-4 text-foreground">
               Product Showcase: <span className="text-primary">Launching 2026</span>
             </h2>
 
-            {/* ICON GRID */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-
-              <div className="flex flex-col items-center space-y-2">
-                <img src="/icons/products/hospital.jpg" className="w-16 h-16 rounded-full" />
-                <p className="text-sm font-medium">Hospital Management</p>
-              </div>
-
-              <div className="flex flex-col items-center space-y-2">
-                <img src="/icons/products/transport.jpg" className="w-16 h-16 rounded-full" />
-                <p className="text-sm font-medium">Transport Management</p>
-              </div>
-
-              <div className="flex flex-col items-center space-y-2">
-                <img src="/icons/products/office.jpg" className="w-16 h-16 rounded-full" />
-                <p className="text-sm font-medium">Office / Work Management</p>
-              </div>
-
-              <div className="flex flex-col items-center space-y-2">
-                <img src="/icons/products/school.jpg" className="w-16 h-16 rounded-full" />
-                <p className="text-sm font-medium">School & Alumni</p>
-              </div>
-
-              <div className="flex flex-col items-center space-y-2">
-                <img src="/icons/products/ecommerce.jpg" className="w-16 h-16 rounded-full" />
-                <p className="text-sm font-medium">E-commerce Inventory</p>
-              </div>
-
-              <div className="flex flex-col items-center space-y-2">
-                <img src="/icons/products/hotel.jpg" className="w-16 h-16 rounded-full" />
-                <p className="text-sm font-medium">Hotel & Hospitality</p>
-              </div>
-
-              <div className="flex flex-col items-center space-y-2">
-                <img src="/icons/products/survey.jpg" className="w-16 h-16 rounded-full" />
-                <p className="text-sm font-medium">Survey System</p>
-              </div>
-
-              <div className="flex flex-col items-center space-y-2">
-                <img src="/icons/products/marketing.jpg" className="w-16 h-16 rounded-full" />
-                <p className="text-sm font-medium">Marketing Suite</p>
-              </div>
-
+              {[
+                "hospital",
+                "transport",
+                "office",
+                "school",
+                "ecommerce",
+                "hotel",
+                "survey",
+                "marketing",
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="flex flex-col items-center space-y-2"
+                >
+                  <img
+                    src={`/icons/products/${item}.jpg`}
+                    className="w-16 h-16 rounded-full"
+                  />
+                  <p className="text-sm font-medium capitalize">
+                    {item.replace("-", " ")}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* RIGHT SIDE — LAUNCHING 2026 */}
-          <div className="relative flex items-center justify-center">
+          {/* RIGHT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, rotate: -15 }}
+            whileInView={{ opacity: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="relative flex items-center justify-center"
+          >
             <img
               src="/launch-bg.png"
               alt="Launching 2026"
               className="w-[380px] h-[380px] object-contain opacity-90"
             />
-          </div>
-
+          </motion.div>
         </div>
       </section>
 
-      {/* 🔵 SECOND DIVIDER */}
+      {/* Divider */}
       <div className="w-full h-[1px] bg-blue-400/40 mt-6 mb-8"></div>
 
-      {/* 🎴 FEATURE CARDS SECTION */}
+      {/* Feature Cards */}
       <section className="relative z-10 bg-background pt-16 pb-10">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
 
           {cards.map((card, index) => (
-            <div key={index} className="flip-card w-full h-64">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="flip-card w-full h-64"
+            >
               <div className="flip-inner w-full h-full">
-
-                {/* Front */}
                 <div className="flip-front bg-card rounded-2xl shadow-md flex items-center justify-center border border-border">
                   <img src="/logo1.jpg" className="w-28 h-28 object-contain" />
                 </div>
 
-                {/* Back */}
                 <div className="flip-back bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-border">
                   {card.icon}
                   <h3 className="text-xl font-semibold mt-2">{card.title}</h3>
                   <p className="text-muted-foreground mt-2 px-4">{card.description}</p>
                 </div>
-
               </div>
-            </div>
+            </motion.div>
           ))}
-
         </div>
       </section>
     </>

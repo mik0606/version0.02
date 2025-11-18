@@ -16,38 +16,50 @@ export default {
         "2xl": "1400px",
       },
     },
+
+    // GLOBAL FONT FOR ENTIRE WEBSITE
     fontFamily: {
       sans: ["Inter", "sans-serif"],
     },
+
     extend: {
+      // Optional utility class
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+      },
+
       colors: {
-        border: "#B0E0E6", // light cyan border
-        input: "#F8FAFC", // subtle white-blue input bg
-        ring: "#00CED1",  // cyan accent ring
-        background: "#FFFFFF", // white background
-        foreground: "#001F3F", // deep navy text
-        primary: { DEFAULT: "#00CED1", foreground: "#FFFFFF" }, // main logo blue
-        secondary: { DEFAULT: "#99CC00", foreground: "#FFFFFF" }, // accent green from tree
-        destructive: { DEFAULT: "#1E3A8A", foreground: "#FFFFFF" }, // dark navy
-        muted: { DEFAULT: "#E0F7FA", foreground: "#003B5C" }, // soft teal muted tone
-        accent: { DEFAULT: "#0077B6", foreground: "#FFFFFF" }, // ocean blue accent
+        border: "#B0E0E6",
+        input: "#F8FAFC",
+        ring: "#00CED1",
+        background: "#FFFFFF",
+        foreground: "#001F3F",
+        primary: { DEFAULT: "#00CED1", foreground: "#FFFFFF" },
+        secondary: { DEFAULT: "#99CC00", foreground: "#FFFFFF" },
+        destructive: { DEFAULT: "#1E3A8A", foreground: "#FFFFFF" },
+        muted: { DEFAULT: "#E0F7FA", foreground: "#003B5C" },
+        accent: { DEFAULT: "#0077B6", foreground: "#FFFFFF" },
         popover: { DEFAULT: "#FFFFFF", foreground: "#001F3F" },
         card: { DEFAULT: "#FFFFFF", foreground: "#001F3F" },
       },
+
       backgroundImage: {
         "gradient-primary": "linear-gradient(to right, #00CED1, #0077B6)",
         "gradient-dark": "linear-gradient(to right, #E0F7FA, #B0E0E6)",
         "gradient-hero": "linear-gradient(135deg, #00CED1, #0077B6)",
       },
+
       boxShadow: {
         glow: "0 0 25px #00CED133",
         card: "0 4px 20px #0077B633",
       },
+
       borderRadius: {
         lg: "12px",
         md: "10px",
         sm: "8px",
       },
+
       keyframes: {
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
         "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
@@ -57,6 +69,7 @@ export default {
         "slide-in-right": { from: { transform: "translateX(100%)" }, to: { transform: "translateX(0)" } },
         glow: { "0%, 100%": { boxShadow: "0 0 20px #00CED133" }, "50%": { boxShadow: "0 0 40px #00CED166" } },
       },
+
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
@@ -68,5 +81,6 @@ export default {
       },
     },
   },
+
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
