@@ -4,8 +4,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// Pages
 import Index from "./pages/Index";
 import Products from "./pages/Products";
+
+// Product Sub-Pages
 import Hospital from "./pages/products/Hospital";
 import Transport from "./pages/products/Transport";
 import Office from "./pages/products/Office";
@@ -14,9 +17,14 @@ import Ecommerce from "./pages/products/Ecommerce";
 import Hotel from "./pages/products/Hotel";
 import Survey from "./pages/products/Survey";
 import Marketing from "./pages/products/Marketing";
-import NotFound from "./pages/NotFound";
-import ContactUs from "./pages/contactUs";// ✅ NEW PAGE
 
+// New Pages
+import ContactUs from "./pages/ContactUs";
+import CareerPage from "./components/Career"; // ✅ Your new Career Page
+
+import NotFound from "./pages/NotFound";
+
+// Query Client
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -24,12 +32,13 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+
       <BrowserRouter>
         <Routes>
-          {/* ✅ Home */}
+          {/* Home */}
           <Route path="/" element={<Index />} />
 
-          {/* ✅ Product Pages */}
+          {/* Product Pages */}
           <Route path="/products" element={<Products />} />
           <Route path="/products/hospital" element={<Hospital />} />
           <Route path="/products/transport" element={<Transport />} />
@@ -40,10 +49,11 @@ const App = () => (
           <Route path="/products/survey" element={<Survey />} />
           <Route path="/products/marketing" element={<Marketing />} />
 
-          {/* ✅ Contact Page */}
+          {/* New Pages */}
+          <Route path="/career" element={<CareerPage />} />  {/* ✅ Added */}
           <Route path="/contact" element={<ContactUs />} />
 
-          {/* ✅ 404 */}
+          {/* 404 Page */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
