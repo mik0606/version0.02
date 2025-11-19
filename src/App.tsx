@@ -20,13 +20,15 @@ import Marketing from "./pages/products/Marketing";
 
 // New Pages
 import ContactUs from "./pages/ContactUs";
-import CareerPage from "./components/Career"; // ✅ Your new Career Page
+import CareerPage from "./components/Career";
+ // ✅ Your new Career Page
 
 import NotFound from "./pages/NotFound";
 
 // Query Client
 const queryClient = new QueryClient();
 
+// temp fix
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
