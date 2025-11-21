@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { ProcessFlow } from "@/components/ProcessFlow";
-import { MissionVision } from "@/components/MissionVision";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -13,15 +12,10 @@ const Index = () => {
       <Navigation />
       <Hero />
 
-      {/* Divider between Hero → Development */}
-      <div className="w-full h-[1px] bg-blue-400/40 my-12"></div>
-
       <ProcessFlow />
 
-      {/* Divider between Development → Mission/Vision */}
+      {/* Divider */}
       <div className="w-full h-[1px] bg-blue-400/40 my-12"></div>
-
-      <MissionVision />
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-hero relative overflow-hidden">
@@ -54,4 +48,3 @@ const Index = () => {
 };
 
 export default Index;
-    
