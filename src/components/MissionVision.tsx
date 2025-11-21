@@ -1,3 +1,4 @@
+/*
 import { Target, Eye } from "lucide-react";
 
 export const MissionVision = () => {
@@ -29,3 +30,4 @@ export const MissionVision = () => {
     </section>
   );
 };
+*/

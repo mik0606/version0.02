@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export const Hero = () => {
+  
+  /*
   const cards = [
     {
       icon: <Zap className="w-8 h-8 text-primary mb-2 mx-auto" />,
@@ -20,8 +22,7 @@ export const Hero = () => {
       title: "Results-Driven",
       description: "Measurable impact on business outcomes",
     },
-  ];
-
+  ];*/
   return (
     <>
       {/* HERO SECTION */}
@@ -54,7 +55,7 @@ export const Hero = () => {
               </span>
 
               <span className="block text-[#21C4A3] text-2xl md:text-3xl font-semibold mt-2">
-                with Analytics & AI Features
+                with AI analytics
               </span>
             </motion.h1>
 
@@ -192,34 +193,7 @@ export const Hero = () => {
 
       {/* Divider */}
       <div className="w-full h-[1px] bg-blue-400/40 mt-6 mb-8"></div>
-
-      {/* Feature Cards */}
-      <section className="relative z-10 bg-background pt-16 pb-10">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-
-          {cards.map((card, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.85 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="flip-card w-full h-64"
-            >
-              <div className="flip-inner w-full h-full">
-                <div className="flip-front bg-card rounded-2xl shadow-md flex items-center justify-center border border-border">
-                  <img src="/logo1.jpg" className="w-28 h-28 object-contain" />
-                </div>
-
-                <div className="flip-back bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl shadow-xl flex flex-col items-center justify-center text-center border border-border">
-                  {card.icon}
-                  <h3 className="text-xl font-semibold mt-2">{card.title}</h3>
-                  <p className="text-muted-foreground mt-2 px-4">{card.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+    
     </>
   );
 };
