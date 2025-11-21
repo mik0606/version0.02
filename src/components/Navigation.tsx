@@ -230,13 +230,13 @@ export const Navigation = () => {
                     <Item
                       name="E-commerce Inventory"
                       desc="AI-powered inventory tracking, demand forecasting, and automated stock control."
-                      link="/products/Ecommerce"
+                      link="/products/ecommerce"
                     />
 
                     <Item
                       name="Hotel & Hospitality"
                       desc="Complete hospitality platform with bookings, guest services, and analytics."
-                      link="/products/Hotel"
+                      link="/products/hotel"
                     />
 
                     <Item
@@ -248,7 +248,7 @@ export const Navigation = () => {
                     <Item
                       name="Marketing Suite"
                       desc="AI-powered SEO, social media management, content creation & campaign analytics."
-                      link="/products/Marketing"
+                      link="/products/marketing"
                     />
 
                   </div>

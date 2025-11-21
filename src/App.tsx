@@ -19,9 +19,9 @@ import Survey from "./pages/products/Survey";
 import Marketing from "./pages/products/Marketing";
 
 // New Pages
-import ContactUs from "./pages/ContactUs";
+import ContactUs from "./pages/ContactUsPage";
 import CareerPage from "./components/Career";
- // ✅ Your new Career Page
+// ✅ Your new Career Page
 
 import NotFound from "./pages/NotFound";
 
