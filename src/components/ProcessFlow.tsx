@@ -23,7 +23,8 @@ const itemVariants = {
     scale: 1,
     rotateX: 0,
     transition: {
-      type: "spring",
+      duration: 0.5,
+      easing: "ease-out",
       stiffness: 80,
       damping: 15,
     },
@@ -42,7 +43,8 @@ const iconVariants = {
     rotate: 0,
     opacity: 1,
     transition: {
-      type: "spring",
+      duration: 0.45,
+      easing: "ease-out",
       stiffness: 200,
       damping: 15,
     },
@@ -50,7 +52,8 @@ const iconVariants = {
   hover: {
     scale: 1.15,
     transition: {
-      type: "spring",
+      duration: 0.25,
+      easing: "ease-out",
       stiffness: 300,
       damping: 15,
     },
@@ -79,7 +82,7 @@ export const ProcessFlow = () => {
           </p>
         </div>
 
-        {/* Grid Wrapper (with media fix) */}
+        {/* Grid Wrapper */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -138,20 +141,17 @@ export const ProcessFlow = () => {
                 <s.icon className="w-8 h-8" />
               </motion.div>
 
-              {/* Step */}
               <p className="text-primary text-sm font-semibold">{s.step}</p>
 
-              {/* Title */}
               <h3 className="text-lg font-bold mt-1 leading-tight h-12 flex items-center justify-center">
                 {s.title}
               </h3>
 
-              {/* Description */}
               <p className="text-sm text-muted-foreground mt-2 leading-relaxed h-12">
                 {s.desc}
               </p>
 
-              {/* Connector Line (desktop only) */}
+              {/* Connector Line */}
               {i < steps.length - 1 && (
                 <motion.div
                   initial={{ width: 0 }}
