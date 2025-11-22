@@ -7,7 +7,7 @@ import {
   Rocket,
   Settings,
 } from "lucide-react";
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, AnimatePresence, Variants } from "framer-motion";
 
 const steps = [
   {
@@ -67,7 +67,7 @@ const steps = [
 ];
 
 // Enhanced animations
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -78,20 +78,20 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: { 
-    opacity: 0, 
+const itemVariants: Variants = {
+  hidden: {
+    opacity: 0,
     y: 50,
     scale: 0.8,
     rotateX: -15,
   },
-  show: { 
-    opacity: 1, 
+  show: {
+    opacity: 1,
     y: 0,
     scale: 1,
     rotateX: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 80,
       damping: 15,
       mass: 1,
@@ -107,18 +107,18 @@ const itemVariants = {
   },
 };
 
-const iconVariants = {
-  hidden: { 
-    scale: 0, 
+const iconVariants: Variants = {
+  hidden: {
+    scale: 0,
     rotate: -180,
-    opacity: 0 
+    opacity: 0
   },
-  show: { 
-    scale: 1, 
+  show: {
+    scale: 1,
     rotate: 0,
     opacity: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 200,
       damping: 15,
       delay: 0.1,
@@ -128,7 +128,7 @@ const iconVariants = {
     scale: 1.15,
     rotate: [0, -5, 5, 0],
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 400,
       damping: 10,
     },
@@ -137,65 +137,65 @@ const iconVariants = {
     scale: 1.2,
     rotate: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 300,
       damping: 15,
     },
   },
 };
 
-const lineVariants = {
-  hidden: { 
-    scaleX: 0, 
+const lineVariants: Variants = {
+  hidden: {
+    scaleX: 0,
     opacity: 0,
     transformOrigin: "left center",
   },
-  show: { 
-    scaleX: 1, 
+  show: {
+    scaleX: 1,
     opacity: 1,
     transition: {
       duration: 1.2,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
     },
   },
 };
 
-const textVariants = {
-  hidden: { 
-    opacity: 0, 
+const textVariants: Variants = {
+  hidden: {
+    opacity: 0,
     y: 20,
     filter: "blur(10px)",
   },
-  show: { 
-    opacity: 1, 
+  show: {
+    opacity: 1,
     y: 0,
     filter: "blur(0px)",
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: "easeOut" as const,
     },
   },
 };
 
-const floatingVariants = {
+const floatingVariants: Variants = {
   animate: {
     y: [0, -15, 0],
     transition: {
       duration: 4,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   },
 };
 
-const pulseVariants = {
+const pulseVariants: Variants = {
   animate: {
     scale: [1, 1.05, 1],
     opacity: [0.7, 1, 0.7],
     transition: {
       duration: 3,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   },
 };
@@ -204,8 +204,8 @@ export const ProcessFlow = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
-  
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -234,7 +234,7 @@ export const ProcessFlow = () => {
   return (
     <section ref={sectionRef} className="py-32 bg-gradient-to-br from-slate-50 via-blue-50/20 to-purple-50/20 relative overflow-hidden">
       {/* Enhanced Animated background elements */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-15"
         style={{ y: backgroundY, scale }}
       >
@@ -288,15 +288,15 @@ export const ProcessFlow = () => {
               />
             </motion.span>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             variants={textVariants}
             className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 bg-clip-text text-transparent"
           >
             Development Process
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             variants={textVariants}
             className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
           >
@@ -330,7 +330,7 @@ export const ProcessFlow = () => {
                     className="hidden lg:block absolute top-16 left-full w-full h-1 bg-gradient-to-r from-primary/10 to-primary/5 z-0"
                   >
                     <motion.div
-                      animate={{ 
+                      animate={{
                         scaleX: activeStep >= index ? 1 : 0,
                         background: activeStep >= index ? step.gradient : 'transparent'
                       }}
@@ -342,12 +342,11 @@ export const ProcessFlow = () => {
 
                 {/* Enhanced Step Card */}
                 <motion.div
-                  className={`relative p-8 rounded-3xl border-2 transition-all duration-500 backdrop-blur-sm ${
-                    activeStep === index 
+                  className={`relative p-8 rounded-3xl border-2 transition-all duration-500 backdrop-blur-sm ${activeStep === index
                       ? `border-primary/30 shadow-2xl scale-105 ${step.bgColor}`
                       : 'border-white/50 shadow-lg bg-white/80 hover:bg-white hover:shadow-2xl'
-                  }`}
-                  whileHover={{ 
+                    }`}
+                  whileHover={{
                     y: -5,
                     transition: { type: "spring", stiffness: 400, damping: 25 }
                   }}
@@ -355,7 +354,7 @@ export const ProcessFlow = () => {
                 >
                   {/* Animated gradient border */}
                   <motion.div
-                    animate={{ 
+                    animate={{
                       opacity: activeStep === index ? 1 : 0,
                       scale: activeStep === index ? 1 : 0.95
                     }}
@@ -371,24 +370,23 @@ export const ProcessFlow = () => {
                     initial="hidden"
                     animate={activeStep === index ? "active" : "show"}
                     whileHover="hover"
-                    className={`relative w-24 h-24 mx-auto rounded-3xl mb-8 flex items-center justify-center ${
-                      activeStep === index 
+                    className={`relative w-24 h-24 mx-auto rounded-3xl mb-8 flex items-center justify-center ${activeStep === index
                         ? `bg-gradient-to-br ${step.color} text-white shadow-2xl`
                         : 'bg-white text-primary border-2 border-slate-200/80 shadow-lg'
-                    }`}
+                      }`}
                   >
                     <step.icon className="w-10 h-10" />
-                    
+
                     {/* Enhanced Pulse animation for active step */}
                     {activeStep === index && (
                       <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ 
+                        animate={{
                           scale: [1, 1.3, 1],
                           opacity: [0.8, 0, 0.8]
                         }}
-                        transition={{ 
-                          duration: 2, 
+                        transition={{
+                          duration: 2,
                           repeat: Infinity,
                           ease: "easeInOut"
                         }}
@@ -431,7 +429,7 @@ export const ProcessFlow = () => {
 
                   {/* Enhanced Step Number */}
                   <motion.p
-                    animate={{ 
+                    animate={{
                       color: activeStep === index ? step.color.split(' ')[0].replace('from-', '') : '#64748b',
                       scale: activeStep === index ? 1.05 : 1
                     }}
@@ -442,7 +440,7 @@ export const ProcessFlow = () => {
 
                   {/* Enhanced Title */}
                   <motion.h3
-                    animate={{ 
+                    animate={{
                       color: activeStep === index ? '#1e293b' : '#475569',
                     }}
                     className="text-xl font-bold mb-4 transition-colors duration-300 line-clamp-2 h-14"
@@ -453,8 +451,8 @@ export const ProcessFlow = () => {
                   {/* Enhanced Description */}
                   <motion.p
                     initial={{ opacity: 0.8 }}
-                    animate={{ 
-                      opacity: activeStep === index ? 1 : 0.7 
+                    animate={{
+                      opacity: activeStep === index ? 1 : 0.7
                     }}
                     className="text-muted-foreground text-sm leading-relaxed transition-opacity duration-300 line-clamp-3"
                   >
@@ -463,7 +461,7 @@ export const ProcessFlow = () => {
 
                   {/* Enhanced Progress indicator */}
                   <motion.div
-                    animate={{ 
+                    animate={{
                       width: activeStep >= index ? '100%' : '0%',
                       opacity: activeStep >= index ? 1 : 0.5
                     }}
@@ -478,9 +476,9 @@ export const ProcessFlow = () => {
                     {[0, 1, 2].map((dotIndex) => (
                       <motion.div
                         key={dotIndex}
-                        animate={{ 
+                        animate={{
                           scale: activeStep === index + dotIndex ? 1.4 : 1,
-                          backgroundColor: activeStep >= index + dotIndex ? 
+                          backgroundColor: activeStep >= index + dotIndex ?
                             step.color.split(' ')[0].replace('from-', '') : '#e2e8f0'
                         }}
                         transition={{ duration: 0.4, delay: dotIndex * 0.1 }}
@@ -494,14 +492,14 @@ export const ProcessFlow = () => {
           </div>
 
           {/* Enhanced Progress indicator bar */}
-          <motion.div 
+          <motion.div
             className="hidden lg:block mt-16 bg-white/50 backdrop-blur-sm rounded-full h-3 overflow-hidden border border-white/20 shadow-lg"
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
             <motion.div
-              animate={{ 
+              animate={{
                 width: `${((activeStep + 1) / steps.length) * 100}%`,
                 background: steps[activeStep].gradient
               }}
@@ -524,15 +522,15 @@ export const ProcessFlow = () => {
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 200, 
+            transition={{
+              type: "spring",
+              stiffness: 200,
               damping: 20,
-              duration: 0.5 
+              duration: 0.5
             }}
             className="text-center mt-16"
           >
-            <motion.div 
+            <motion.div
               className="inline-flex items-center gap-6 px-8 py-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20"
               whileHover={{ scale: 1.02, y: -2 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -544,11 +542,11 @@ export const ProcessFlow = () => {
                 {steps[activeStep].title}
               </span>
               <motion.div
-                animate={{ 
+                animate={{
                   rotate: 360,
                   scale: [1, 1.2, 1]
                 }}
-                transition={{ 
+                transition={{
                   rotate: { duration: 3, repeat: Infinity, ease: "linear" },
                   scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
                 }}
