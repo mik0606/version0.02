@@ -391,9 +391,33 @@ const Hospital = () => {
 
             <main className="pt-20 pb-16 relative z-10">
                 {/* AI-Powered Healthcare Section (Flip Cards) */}
-                <section className="py-24 bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50">
+                <section className="py-24 bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50 relative overflow-hidden">
+                    {/* Floating particles background */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                        <motion.div
+                            className="absolute w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"
+                            animate={{
+                                x: [0, 100, 0],
+                                y: [0, -100, 0],
+                                scale: [1, 1.2, 1],
+                            }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+                            style={{ top: '10%', left: '10%' }}
+                        />
+                        <motion.div
+                            className="absolute w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"
+                            animate={{
+                                x: [0, -100, 0],
+                                y: [0, 100, 0],
+                                scale: [1, 1.3, 1],
+                            }}
+                            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+                            style={{ bottom: '10%', right: '10%' }}
+                        />
+                    </div>
+
                     <motion.h2
-                        className="text-5xl font-black text-center mb-20 bg-gradient-to-r from-slate-800 via-blue-700 to-slate-800 bg-clip-text text-transparent"
+                        className="text-5xl font-black text-center mb-20 bg-gradient-to-r from-slate-800 via-blue-700 to-slate-800 bg-clip-text text-transparent relative z-10"
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ type: "spring", stiffness: 80, damping: 15 }}
@@ -401,90 +425,395 @@ const Hospital = () => {
                         AI-Powered Healthcare
                     </motion.h2>
 
-                    <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <div className="container mx-auto px-4 relative z-10">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
 
-                            {/* 1. Pharmacy Flip Card (Corrected) 💊 */}
-                            <div className="group flip-card w-full h-[420px] **[perspective:1000px]**">
-                                <div className="flip-inner w-full h-full relative **transition-transform duration-1000** **[transform-style:preserve-3d]** **group-hover:[transform:rotateY(180deg)]**">
+                            {/* 1. Pharmacy Card 💊 - MYTHIC 3D */}
+                            <motion.div
+                                className="group relative cursor-pointer"
+                                initial={{ opacity: 0, y: 100, rotateX: -15 }}
+                                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                                transition={{ delay: 0.1, duration: 0.8, type: "spring" }}
+                                style={{ perspective: 1000 }}
+                            >
+                                <motion.div
+                                    className="relative bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 rounded-3xl overflow-hidden h-[550px]"
+                                    style={{
+                                        transformStyle: "preserve-3d",
+                                        boxShadow: "0 30px 80px rgba(59, 130, 246, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset"
+                                    }}
+                                    whileHover={{
+                                        rotateY: 5,
+                                        rotateX: 5,
+                                        scale: 1.05,
+                                        z: 50,
+                                        boxShadow: "0 50px 100px rgba(59, 130, 246, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.2) inset"
+                                    }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                >
+                                    {/* Animated gradient overlay */}
+                                    <motion.div
+                                        className="absolute inset-0 opacity-30"
+                                        style={{
+                                            background: "linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)",
+                                            backgroundSize: "200% 200%",
+                                        }}
+                                        animate={{
+                                            backgroundPosition: ["0% 0%", "100% 100%"],
+                                        }}
+                                        transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+                                    />
 
-                                    {/* FRONT */}
-                                    <div className="flip-front absolute w-full h-full rounded-3xl shadow-2xl bg-white overflow-hidden **[backface-visibility:hidden]**">
-                                        <img 
+                                    {/* 3D Image container */}
+                                    <motion.div 
+                                        className="relative h-64 overflow-hidden"
+                                        style={{ transform: "translateZ(20px)" }}
+                                    >
+                                        <motion.img 
                                             src="https://images.unsplash.com/photo-1580281658629-81a6502edc31"
+                                            alt="Pharmacy"
                                             className="w-full h-full object-cover"
+                                            whileHover={{ scale: 1.2 }}
+                                            transition={{ duration: 0.6 }}
                                         />
-                                        <div className="absolute inset-0 bg-black/40"></div>
-                                        <div className="absolute bottom-4 left-4 text-3xl font-bold text-white drop-shadow-xl">
-                                            Pharmacy
-                                        </div>
-                                    </div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-blue-900 via-blue-900/50 to-transparent"></div>
+                                        
+                                        {/* Floating icon */}
+                                        <motion.div 
+                                            className="absolute bottom-6 left-6"
+                                            style={{ transform: "translateZ(40px)" }}
+                                            whileHover={{ y: -10 }}
+                                        >
+                                            <motion.div 
+                                                className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mb-4 shadow-2xl"
+                                                animate={{ 
+                                                    rotate: [0, 5, -5, 0],
+                                                    scale: [1, 1.05, 1]
+                                                }}
+                                                transition={{ duration: 4, repeat: Infinity }}
+                                            >
+                                                <Activity className="w-10 h-10 text-blue-600" />
+                                            </motion.div>
+                                            <motion.h3 
+                                                className="text-4xl font-black text-white drop-shadow-2xl"
+                                                animate={{ textShadow: ["0 0 20px rgba(255,255,255,0.5)", "0 0 40px rgba(255,255,255,0.8)", "0 0 20px rgba(255,255,255,0.5)"] }}
+                                                transition={{ duration: 2, repeat: Infinity }}
+                                            >
+                                                Pharmacy
+                                            </motion.h3>
+                                        </motion.div>
+                                    </motion.div>
 
-                                    {/* BACK */}
-                                    <div className="flip-back absolute w-full h-full rounded-3xl shadow-2xl bg-blue-50 p-10 flex flex-col justify-center **[transform:rotateY(180deg)]** **[backface-visibility:hidden]**">
-                                        <h3 className="text-3xl font-bold text-blue-700 mb-6">Pharmacy Features</h3>
-                                        <ul className="text-slate-700 space-y-4 text-xl">
-                                            <li>• Stock Management</li>
-                                            <li>• Batch & Expiry Alerts</li>
-                                            <li>• Auto Medicine Refill</li>
+                                    {/* Content with 3D depth */}
+                                    <motion.div 
+                                        className="p-8 relative"
+                                        style={{ transform: "translateZ(30px)" }}
+                                    >
+                                        <motion.p 
+                                            className="text-blue-50 mb-6 text-lg font-medium"
+                                            initial={{ opacity: 0 }}
+                                            whileInView={{ opacity: 1 }}
+                                            transition={{ delay: 0.3 }}
+                                        >
+                                            Comprehensive medication management system
+                                        </motion.p>
+                                        <ul className="space-y-4">
+                                            {["Stock Management", "Batch & Expiry Alerts", "Auto Medicine Refill"].map((item, idx) => (
+                                                <motion.li
+                                                    key={idx}
+                                                    className="flex items-center gap-3 text-white font-medium"
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    whileInView={{ opacity: 1, x: 0 }}
+                                                    transition={{ delay: 0.4 + idx * 0.1 }}
+                                                    whileHover={{ x: 10, scale: 1.05 }}
+                                                >
+                                                    <motion.div
+                                                        whileHover={{ rotate: 360, scale: 1.2 }}
+                                                        transition={{ duration: 0.5 }}
+                                                    >
+                                                        <Check className="w-6 h-6 text-yellow-300 flex-shrink-0 drop-shadow-lg" />
+                                                    </motion.div>
+                                                    <span>{item}</span>
+                                                </motion.li>
+                                            ))}
                                         </ul>
-                                    </div>
-                                </div>
-                            </div>
+                                    </motion.div>
 
-                            {/* 2. Laboratory Flip Card (Corrected) 🔬 */}
-                            <div className="group flip-card w-full h-[420px] **[perspective:1000px]**">
-                                <div className="flip-inner w-full h-full relative **transition-transform duration-1000** **[transform-style:preserve-3d]** **group-hover:[transform:rotateY(180deg)]**">
+                                    {/* Glowing edges */}
+                                    <div className="absolute inset-0 rounded-3xl border-2 border-white/20 pointer-events-none"></div>
+                                    <motion.div
+                                        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100"
+                                        style={{
+                                            background: "radial-gradient(circle at center, transparent 40%, rgba(255,255,255,0.1) 100%)"
+                                        }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                </motion.div>
 
-                                    <div className="flip-front absolute w-full h-full rounded-3xl shadow-2xl bg-white overflow-hidden **[backface-visibility:hidden]**">
-                                        <img 
+                                {/* 3D Shadow */}
+                                <motion.div
+                                    className="absolute inset-0 bg-blue-900/30 rounded-3xl blur-2xl -z-10"
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    whileHover={{ scale: 1.1, opacity: 0.8 }}
+                                    transition={{ duration: 0.3 }}
+                                    style={{ transform: "translateZ(-50px) translateY(20px)" }}
+                                />
+                            </motion.div>
+
+                            {/* 2. Laboratory Card 🔬 - MYTHIC 3D */}
+                            <motion.div
+                                className="group relative cursor-pointer"
+                                initial={{ opacity: 0, y: 100, rotateX: -15 }}
+                                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                                transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
+                                style={{ perspective: 1000 }}
+                            >
+                                <motion.div
+                                    className="relative bg-gradient-to-br from-green-500 via-emerald-600 to-teal-700 rounded-3xl overflow-hidden h-[550px]"
+                                    style={{
+                                        transformStyle: "preserve-3d",
+                                        boxShadow: "0 30px 80px rgba(34, 197, 94, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset"
+                                    }}
+                                    whileHover={{
+                                        rotateY: -5,
+                                        rotateX: 5,
+                                        scale: 1.05,
+                                        z: 50,
+                                        boxShadow: "0 50px 100px rgba(34, 197, 94, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.2) inset"
+                                    }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                >
+                                    <motion.div
+                                        className="absolute inset-0 opacity-30"
+                                        style={{
+                                            background: "linear-gradient(-45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)",
+                                            backgroundSize: "200% 200%",
+                                        }}
+                                        animate={{
+                                            backgroundPosition: ["0% 0%", "100% 100%"],
+                                        }}
+                                        transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+                                    />
+
+                                    <motion.div 
+                                        className="relative h-64 overflow-hidden"
+                                        style={{ transform: "translateZ(20px)" }}
+                                    >
+                                        <motion.img 
                                             src="https://images.unsplash.com/photo-1581090464777-8d45a7bb86f2"
+                                            alt="Laboratory"
                                             className="w-full h-full object-cover"
+                                            whileHover={{ scale: 1.2 }}
+                                            transition={{ duration: 0.6 }}
                                         />
-                                        <div className="absolute inset-0 bg-black/40"></div>
-                                        <div className="absolute bottom-4 left-4 text-3xl font-bold text-white drop-shadow-xl">
-                                            Laboratory
-                                        </div>
-                                    </div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-green-900 via-green-900/50 to-transparent"></div>
+                                        
+                                        <motion.div 
+                                            className="absolute bottom-6 left-6"
+                                            style={{ transform: "translateZ(40px)" }}
+                                            whileHover={{ y: -10 }}
+                                        >
+                                            <motion.div 
+                                                className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mb-4 shadow-2xl"
+                                                animate={{ 
+                                                    rotate: [0, -5, 5, 0],
+                                                    scale: [1, 1.05, 1]
+                                                }}
+                                                transition={{ duration: 5, repeat: Infinity }}
+                                            >
+                                                <Stethoscope className="w-10 h-10 text-green-600" />
+                                            </motion.div>
+                                            <motion.h3 
+                                                className="text-4xl font-black text-white drop-shadow-2xl"
+                                                animate={{ textShadow: ["0 0 20px rgba(255,255,255,0.5)", "0 0 40px rgba(255,255,255,0.8)", "0 0 20px rgba(255,255,255,0.5)"] }}
+                                                transition={{ duration: 2.5, repeat: Infinity }}
+                                            >
+                                                Laboratory
+                                            </motion.h3>
+                                        </motion.div>
+                                    </motion.div>
 
-                                    <div className="flip-back absolute w-full h-full rounded-3xl shadow-2xl bg-green-50 p-10 flex flex-col justify-center **[transform:rotateY(180deg)]** **[backface-visibility:hidden]**">
-                                        <h3 className="text-3xl font-bold text-green-700 mb-6">Lab Features</h3>
-                                        <ul className="text-slate-700 space-y-4 text-xl">
-                                            <li>• Auto Test Reports</li>
-                                            <li>• Sample Tracking</li>
-                                            <li>• Analyzer Integration</li>
+                                    <motion.div 
+                                        className="p-8 relative"
+                                        style={{ transform: "translateZ(30px)" }}
+                                    >
+                                        <motion.p 
+                                            className="text-green-50 mb-6 text-lg font-medium"
+                                            initial={{ opacity: 0 }}
+                                            whileInView={{ opacity: 1 }}
+                                            transition={{ delay: 0.3 }}
+                                        >
+                                            Advanced diagnostic & testing solutions
+                                        </motion.p>
+                                        <ul className="space-y-4">
+                                            {["Auto Test Reports", "Sample Tracking", "Analyzer Integration"].map((item, idx) => (
+                                                <motion.li
+                                                    key={idx}
+                                                    className="flex items-center gap-3 text-white font-medium"
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    whileInView={{ opacity: 1, x: 0 }}
+                                                    transition={{ delay: 0.4 + idx * 0.1 }}
+                                                    whileHover={{ x: 10, scale: 1.05 }}
+                                                >
+                                                    <motion.div
+                                                        whileHover={{ rotate: 360, scale: 1.2 }}
+                                                        transition={{ duration: 0.5 }}
+                                                    >
+                                                        <Check className="w-6 h-6 text-yellow-300 flex-shrink-0 drop-shadow-lg" />
+                                                    </motion.div>
+                                                    <span>{item}</span>
+                                                </motion.li>
+                                            ))}
                                         </ul>
-                                    </div>
+                                    </motion.div>
 
-                                </div>
-                            </div>
+                                    <div className="absolute inset-0 rounded-3xl border-2 border-white/20 pointer-events-none"></div>
+                                    <motion.div
+                                        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100"
+                                        style={{
+                                            background: "radial-gradient(circle at center, transparent 40%, rgba(255,255,255,0.1) 100%)"
+                                        }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                </motion.div>
 
-                            {/* 3. OPD Flip Card (Corrected) 🩺 */}
-                            <div className="group flip-card w-full h-[420px] **[perspective:1000px]**">
-                                <div className="flip-inner w-full h-full relative **transition-transform duration-1000** **[transform-style:preserve-3d]** **group-hover:[transform:rotateY(180deg)]**">
+                                <motion.div
+                                    className="absolute inset-0 bg-green-900/30 rounded-3xl blur-2xl -z-10"
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    whileHover={{ scale: 1.1, opacity: 0.8 }}
+                                    transition={{ duration: 0.3 }}
+                                    style={{ transform: "translateZ(-50px) translateY(20px)" }}
+                                />
+                            </motion.div>
 
-                                    <div className="flip-front absolute w-full h-full rounded-3xl shadow-2xl bg-white overflow-hidden **[backface-visibility:hidden]**">
-                                        <img 
+                            {/* 3. OPD Card 🩺 - MYTHIC 3D */}
+                            <motion.div
+                                className="group relative cursor-pointer"
+                                initial={{ opacity: 0, y: 100, rotateX: -15 }}
+                                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                                transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
+                                style={{ perspective: 1000 }}
+                            >
+                                <motion.div
+                                    className="relative bg-gradient-to-br from-purple-500 via-violet-600 to-fuchsia-700 rounded-3xl overflow-hidden h-[550px]"
+                                    style={{
+                                        transformStyle: "preserve-3d",
+                                        boxShadow: "0 30px 80px rgba(168, 85, 247, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset"
+                                    }}
+                                    whileHover={{
+                                        rotateY: 5,
+                                        rotateX: -5,
+                                        scale: 1.05,
+                                        z: 50,
+                                        boxShadow: "0 50px 100px rgba(168, 85, 247, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.2) inset"
+                                    }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                >
+                                    <motion.div
+                                        className="absolute inset-0 opacity-30"
+                                        style={{
+                                            background: "linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)",
+                                            backgroundSize: "200% 200%",
+                                        }}
+                                        animate={{
+                                            backgroundPosition: ["0% 0%", "100% 100%"],
+                                        }}
+                                        transition={{ duration: 3.5, repeat: Infinity, repeatType: "reverse" }}
+                                    />
+
+                                    <motion.div 
+                                        className="relative h-64 overflow-hidden"
+                                        style={{ transform: "translateZ(20px)" }}
+                                    >
+                                        <motion.img 
                                             src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a2"
+                                            alt="OPD System"
                                             className="w-full h-full object-cover"
+                                            whileHover={{ scale: 1.2 }}
+                                            transition={{ duration: 0.6 }}
                                         />
-                                        <div className="absolute inset-0 bg-black/40"></div>
-                                        <div className="absolute bottom-4 left-4 text-3xl font-bold text-white drop-shadow-xl">
-                                            OPD System
-                                        </div>
-                                    </div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-purple-900 via-purple-900/50 to-transparent"></div>
+                                        
+                                        <motion.div 
+                                            className="absolute bottom-6 left-6"
+                                            style={{ transform: "translateZ(40px)" }}
+                                            whileHover={{ y: -10 }}
+                                        >
+                                            <motion.div 
+                                                className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mb-4 shadow-2xl"
+                                                animate={{ 
+                                                    rotate: [0, 5, -5, 0],
+                                                    scale: [1, 1.1, 1]
+                                                }}
+                                                transition={{ duration: 4.5, repeat: Infinity }}
+                                            >
+                                                <Heart className="w-10 h-10 text-purple-600" />
+                                            </motion.div>
+                                            <motion.h3 
+                                                className="text-4xl font-black text-white drop-shadow-2xl"
+                                                animate={{ textShadow: ["0 0 20px rgba(255,255,255,0.5)", "0 0 40px rgba(255,255,255,0.8)", "0 0 20px rgba(255,255,255,0.5)"] }}
+                                                transition={{ duration: 2.2, repeat: Infinity }}
+                                            >
+                                                OPD System
+                                            </motion.h3>
+                                        </motion.div>
+                                    </motion.div>
 
-                                    <div className="flip-back absolute w-full h-full rounded-3xl shadow-2xl bg-purple-50 p-10 flex flex-col justify-center **[transform:rotateY(180deg)]** **[backface-visibility:hidden]**">
-                                        <h3 className="text-3xl font-bold text-purple-700 mb-6">OPD Features</h3>
-                                        <ul className="text-slate-700 space-y-4 text-xl">
-                                            <li>• Appointment Booking</li>
-                                            <li>• Queue Management</li>
-                                            <li>• Visit History</li>
+                                    <motion.div 
+                                        className="p-8 relative"
+                                        style={{ transform: "translateZ(30px)" }}
+                                    >
+                                        <motion.p 
+                                            className="text-purple-50 mb-6 text-lg font-medium"
+                                            initial={{ opacity: 0 }}
+                                            whileInView={{ opacity: 1 }}
+                                            transition={{ delay: 0.3 }}
+                                        >
+                                            Streamlined outpatient department management
+                                        </motion.p>
+                                        <ul className="space-y-4">
+                                            {["Appointment Booking", "Queue Management", "Visit History"].map((item, idx) => (
+                                                <motion.li
+                                                    key={idx}
+                                                    className="flex items-center gap-3 text-white font-medium"
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    whileInView={{ opacity: 1, x: 0 }}
+                                                    transition={{ delay: 0.4 + idx * 0.1 }}
+                                                    whileHover={{ x: 10, scale: 1.05 }}
+                                                >
+                                                    <motion.div
+                                                        whileHover={{ rotate: 360, scale: 1.2 }}
+                                                        transition={{ duration: 0.5 }}
+                                                    >
+                                                        <Check className="w-6 h-6 text-yellow-300 flex-shrink-0 drop-shadow-lg" />
+                                                    </motion.div>
+                                                    <span>{item}</span>
+                                                </motion.li>
+                                            ))}
                                         </ul>
-                                    </div>
+                                    </motion.div>
 
-                                </div>
-                            </div>
+                                    <div className="absolute inset-0 rounded-3xl border-2 border-white/20 pointer-events-none"></div>
+                                    <motion.div
+                                        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100"
+                                        style={{
+                                            background: "radial-gradient(circle at center, transparent 40%, rgba(255,255,255,0.1) 100%)"
+                                        }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                </motion.div>
+
+                                <motion.div
+                                    className="absolute inset-0 bg-purple-900/30 rounded-3xl blur-2xl -z-10"
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    whileHover={{ scale: 1.1, opacity: 0.8 }}
+                                    transition={{ duration: 0.3 }}
+                                    style={{ transform: "translateZ(-50px) translateY(20px)" }}
+                                />
+                            </motion.div>
                         </div>
                     </div>
                 </section>
