@@ -7,6 +7,7 @@ import hms1 from '../../assets/hms1.png';
 import hms2 from '../../assets/hms2.png';
 import hms3 from '../../assets/hms3.png';
 import hms4 from '../../assets/hms4.png';
+import { useNavigate } from 'react-router-dom';
 
 const heroImages = [hms1, hms2, hms3, hms4];
 
@@ -100,6 +101,7 @@ const Hospital = () => {
     const [mounted, setMounted] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setMounted(true);
@@ -264,6 +266,8 @@ const Hospital = () => {
                             {/* Buttons */}
                             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
                                 <motion.button
+                                    type="button"
+                                    onClick={() => navigate('/demo', { state: { product: 'Hospital' } })}
                                     variants={buttonHoverVariants}
                                     initial="rest"
                                     whileHover="hover"

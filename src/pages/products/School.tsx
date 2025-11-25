@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Check, X, GraduationCap, BookOpen, Users, ArrowRight, Play, Shield } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import schoolImg from "@/assets/school-dashboard.jpg";
+import { useNavigate } from "react-router-dom";
 
 const features = [
   {
@@ -256,6 +257,7 @@ const School = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const [hovered, setHovered] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -389,7 +391,7 @@ const School = () => {
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-10 py-7 rounded-2xl shadow-2xl">
+                  <Button size="lg" onClick={() => navigate('/demo', { state: { product: 'School' } })} className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-10 py-7 rounded-2xl shadow-2xl">
                     <span className="mr-3">Request a Demo</span>
                     <ArrowRight className="w-5 h-5" />
                   </Button>
@@ -401,7 +403,7 @@ const School = () => {
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  <Button size="lg" variant="outline" className="border-2 font-bold text-lg px-10 py-7 rounded-2xl backdrop-blur-md relative overflow-hidden">
+                  <Button size="lg" variant="outline" onClick={() => navigate('/demo', { state: { product: 'School' } })} className="border-2 font-bold text-lg px-10 py-7 rounded-2xl backdrop-blur-md relative overflow-hidden">
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-100/20 to-transparent"
                       animate={{
@@ -799,7 +801,7 @@ const School = () => {
               whileHover="hover"
               whileTap="tap"
             >
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-black text-xl px-14 py-8 rounded-2xl shadow-2xl">
+              <Button size="lg" onClick={() => navigate('/demo', { state: { product: 'School' } })} className="bg-orange-500 hover:bg-orange-600 text-white font-black text-xl px-14 py-8 rounded-2xl shadow-2xl">
                 <motion.span
                   whileHover={{
                     scale: 1.1,

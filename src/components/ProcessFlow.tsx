@@ -64,9 +64,9 @@ const steps = [
   { icon: ClipboardList, step: "STEP 01", title: "Requirements Gathering", desc: "We understand your vision clearly." },
   { icon: Palette, step: "STEP 02", title: "UI/UX Design", desc: "We design intuitive user experiences." },
   { icon: Code, step: "STEP 03", title: "Development Process", desc: "We build scalable digital solutions." },
-  { icon: TestTube, step: "STEP 04", title: "Testing & Analysis", desc: "We ensure everything works perfectly." },
+  { icon: TestTube, step: "STEP 04", title: "Testing & Analysis", desc: "We ensure everything works." },
   { icon: Rocket, step: "STEP 05", title: "Phased Deployments", desc: "We deliver smooth and stable rollouts." },
-  { icon: Settings, step: "STEP 06", title: "Production & Support", desc: "We maintain and monitor continuously." },
+  { icon: Settings, step: "STEP 06", title: "Production & Support", desc: "We maintain and monitor" },
 ];
 
 export const ProcessFlow = () => {

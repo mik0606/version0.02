@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
 const ContactUs = () => {
+    const location = useLocation();
+    const productFromNav = (location.state as any)?.product ?? "";
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -31,9 +33,14 @@ const ContactUs = () => {
             <Navigation />
 
             {/* MAIN WRAPPER */}
+            {productFromNav && (
+                <div className="container mx-auto px-4 sm:px-6 mt-6">
+                    <p className="text-sm text-slate-600">Requested demo for: <strong>{productFromNav}</strong></p>
+                </div>
+            )}
             <div className="pt-28 pb-20">
                 {/* Perfect centered container with left/right gap */}
-                <div className="container mx-auto px-6 grid lg:grid-cols-2 xl:grid-cols-[1fr_540px] gap-16">
+                <div className="container mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[1fr_540px] gap-12">
 
                     {/* LEFT SIDE — FULL WIDTH */}
                     <div className="w-full">
@@ -74,7 +81,7 @@ const ContactUs = () => {
                     </div>
 
                     {/* RIGHT SIDE FORM — PLACEHOLDER DESIGN */}
-                    <div className="bg-white border shadow-sm rounded-2xl p-6 md:p-10 w-full max-w-lg mx-auto lg:mx-0">
+                    <div className="bg-white border shadow-sm rounded-2xl p-6 md:p-10 w-full sm:max-w-lg mx-auto lg:mx-0">
                         <form onSubmit={handleSubmit} className="space-y-6">
 
                             {/* SIMPLE PLACEHOLDER INPUT FIELDS */}
@@ -98,8 +105,8 @@ const ContactUs = () => {
                       border-b 
                       border-blue-500 
                       focus:border-blue-700 
-                      text-[15px] 
-                      py-2 
+                      text-base sm:text-[15px] 
+                      py-3 sm:py-2 
                       focus:outline-none 
                       placeholder:text-gray-500
                     "
@@ -120,15 +127,15 @@ const ContactUs = () => {
                     border-b
                     border-blue-500
                     focus:border-blue-700
-                    text-[15px]
-                    py-2
+                    text-base sm:text-[15px]
+                    py-3 sm:py-2
                     focus:outline-none
                     appearance-none
                   "
                                 >
                                     <option value="" disabled>Country *</option>
-                                    <option>United States</option>
                                     <option>India</option>
+                                    <option>Canada</option>
                                     <option>United Kingdom</option>
                                     <option>Germany</option>
                                     <option>France</option>
@@ -137,6 +144,8 @@ const ContactUs = () => {
                                 </select>
                             </div>
 
+
+                        
 
                             {/* COMMENTS */}
                             <div>
@@ -151,7 +160,7 @@ const ContactUs = () => {
                     border-blue-500 
                     focus:border-blue-700 
                     rounded-md
-                    text-[15px] 
+                    text-base sm:text-[15px] 
                     p-3 
                     focus:outline-none 
                     placeholder:text-gray-500

@@ -88,12 +88,15 @@ export const Hero = () => {
                 </Button>
               </Link>
 
-              <Button
-                size="lg"
-                className="font-inter text-lg px-8 rounded-full bg-[#0C2340] hover:bg-[#071729] text-white shadow"
-              >
-                Book a Demo
-              </Button>
+              {/* changed: wrap button with Link -> /demo */}
+              <Link to="/demo">
+                <Button
+                  size="lg"
+                  className="font-inter text-lg px-8 rounded-full bg-[#0C2340] hover:bg-[#071729] text-white shadow"
+                >
+                  Book a Demo
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
 

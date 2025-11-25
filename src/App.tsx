@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import Index from "./pages/Index";
@@ -17,25 +17,25 @@ import Ecommerce from "./pages/products/Ecommerce";
 import Hotel from "./pages/products/Hotel";
 import Survey from "./pages/products/Survey";
 import Marketing from "./pages/products/Marketing";
-
-// New Pages
 import ContactUs from "./pages/ContactUsPage";
 import CareerPage from "./components/Career";
-// ✅ Your new Career Page
+import DemoPage from "./components/Demopage";
+
+
 
 import NotFound from "./pages/NotFound";
 
 // Query Client
 const queryClient = new QueryClient();
 
-// temp fix
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
 
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           {/* Home */}
           <Route path="/" element={<Index />} />
@@ -50,15 +50,15 @@ const App = () => (
           <Route path="/products/hotel" element={<Hotel />} />
           <Route path="/products/survey" element={<Survey />} />
           <Route path="/products/marketing" element={<Marketing />} />
-
-          {/* New Pages */}
-          <Route path="/career" element={<CareerPage />} />  {/* ✅ Added */}
+          <Route path="/career" element={<CareerPage />} />  
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/demo" element={<DemoPage />} />
+
 
           {/* 404 Page */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );

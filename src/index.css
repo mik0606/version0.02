@@ -124,3 +124,9 @@ body {
 .flip-card:hover .flip-inner {
   transform: rotateY(180deg);
 }
+
+
+
+html {
+  scroll-behavior: smooth;
+}

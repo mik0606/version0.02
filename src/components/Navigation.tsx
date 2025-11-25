@@ -283,11 +283,13 @@ export const Navigation = () => {
             </NavigationMenu>
 
             <div className="flex items-center space-x-2 ml-4">
-              <Button variant="outline" className="font-heading text-base">Get a Demo</Button>
-              <Link to="/contact">
-                <Button className="bg-gradient-primary font-heading text-base">Contact Us</Button>
+              <Link to="/demo">
+                <Button variant="outline" className="font-heading text-base">Get a Demo</Button>
               </Link>
-            </div>
+               <Link to="/contact">
+                 <Button className="bg-gradient-primary font-heading text-base">Contact Us</Button>
+               </Link>
+             </div>
           </div>
 
           {/* MOBILE MENU BUTTON */}
@@ -309,12 +311,20 @@ export const Navigation = () => {
           <Link to="/career" onClick={() => setIsOpen(false)} className="block py-2 hover:text-primary">
             Career
           </Link>
-          <div className="pt-2 space-y-2">
-            <Button variant="outline" size="sm" className="w-full">Get a Demo</Button>
-            <Link to="/contact" onClick={() => setIsOpen(false)}>
-              <Button size="sm" className="bg-gradient-primary w-full">Contact Us</Button>
-            </Link>
-          </div>
+          <div className="flex items-center space-x-2 ml-4">
+  <Link to="/demo">
+    <Button variant="outline" className="font-heading text-base">
+      Get a Demo
+    </Button>
+  </Link>
+
+  <Link to="/contact">
+    <Button className="bg-gradient-primary font-heading text-base">
+      Contact Us
+    </Button>
+  </Link>
+</div>
+
         </div>
       )}
     </nav>

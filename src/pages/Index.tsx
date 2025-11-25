@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { ProcessFlow } from "@/components/ProcessFlow";
+/* import { MissionVision } from "@/components/MissionVision"; */
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -8,16 +9,21 @@ import { ArrowRight } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background">
       <Navigation />
       <Hero />
 
       <ProcessFlow />
 
-      {/* Divider */}
+      {/* Divider between Development → Mission/Vision */}
       <div className="w-full h-[1px] bg-blue-400/40 my-12"></div>
 
-      {/* CTA Section */}
+      {/* 
+      <MissionVision />
+
+      {/* CTA Section */} 
+      */
+
       <section className="py-24 bg-gradient-hero relative overflow-hidden">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">

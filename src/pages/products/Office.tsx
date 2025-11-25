@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -262,6 +263,7 @@ const Office = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const [hovered, setHovered] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -400,7 +402,7 @@ const Office = () => {
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  <Button size="lg" className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-lg px-10 py-7 rounded-2xl shadow-2xl">
+                  <Button size="lg" onClick={() => navigate('/demo', { state: { product: 'Office' } })} className="bg-purple-500 hover:bg-purple-600 text-white font-bold text-lg px-10 py-7 rounded-2xl shadow-2xl">
                     <span className="mr-3">Start Free Trial</span>
                     <ArrowRight className="w-5 h-5" />
                   </Button>
@@ -412,7 +414,7 @@ const Office = () => {
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  <Button size="lg" variant="outline" className="border-2 font-bold text-lg px-10 py-7 rounded-2xl backdrop-blur-md relative overflow-hidden">
+                  <Button size="lg" variant="outline" onClick={() => navigate('/demo', { state: { product: 'Office' } })} className="border-2 font-bold text-lg px-10 py-7 rounded-2xl backdrop-blur-md relative overflow-hidden">
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-100/20 to-transparent"
                       animate={{
@@ -821,7 +823,7 @@ const Office = () => {
               whileHover="hover"
               whileTap="tap"
             >
-              <Button size="lg" className="bg-purple-500 hover:bg-purple-600 text-white font-black text-xl px-14 py-8 rounded-2xl shadow-2xl">
+              <Button size="lg" onClick={() => navigate('/demo', { state: { product: 'Office' } })} className="bg-purple-500 hover:bg-purple-600 text-white font-black text-xl px-14 py-8 rounded-2xl shadow-2xl">
                 <motion.span
                   whileHover={{
                     scale: 1.1,
