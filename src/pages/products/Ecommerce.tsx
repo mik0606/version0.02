@@ -148,14 +148,14 @@ const Ecommerce = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left Content */}
             <motion.div
-              className="space-y-8"
+              className="space-y-8 relative z-30"
               initial="hidden"
               animate="visible"
               variants={containerVariants}
             >
               {/* Stamp + Header Flex Container */}
-              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-8">
-                {/* Teal Rubber Stamp */}
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-12">
+                {/* MoviCloud Logo Stamp */}
                 <div className="relative group">
                   <motion.div
                     initial={{ scale: 2, opacity: 0 }}
@@ -181,9 +181,9 @@ const Ecommerce = () => {
                         repeatType: "reverse",
                         ease: "easeInOut"
                       }}
-                      className="w-full h-full"
+                      className="w-full h-full relative"
                     >
-                      <svg viewBox="0 0 200 200" className="w-full h-full text-[#0f766e] opacity-95 mix-blend-multiply">
+                      <svg viewBox="0 0 200 200" className="w-full h-full text-[#0f766e] opacity-95 mix-blend-multiply absolute inset-0 z-10">
                         <defs>
                           {/* Refined Grunge Filter - Clearer Text */}
                           <filter id="teal-grunge" x="-20%" y="-20%" width="140%" height="140%">
@@ -229,9 +229,9 @@ const Ecommerce = () => {
                 </div>
 
                 {/* Header Text */}
-                <div className="text-center sm:text-left py-4">
-                  <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight tracking-tight pb-2">
-                    E-Commerce{" "}
+                <div className="text-center sm:text-left py-4 relative z-20">
+                  <h1 className="font-display text-5xl sm:text-6xl lg:text-6xl font-bold text-slate-900 leading-tight tracking-tight pb-2">
+                    <span className="whitespace-nowrap">E-Commerce</span>{" "}
                     <motion.span
                       animate={{ backgroundPosition: ["200% center", "-200% center"] }}
                       transition={{
