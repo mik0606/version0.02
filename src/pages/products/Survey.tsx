@@ -1,135 +1,23 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Check, X, BarChart, Brain, MessageSquare, ArrowRight, Play, TrendingUp } from "lucide-react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import surveyImg from "@/assets/survey-dashboard.jpg";
+import React, { useEffect, useState } from 'react';
+import { motion, Variants, Transition, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Play, Check, BarChart, Brain, MessageSquare, FileText, Share2, Download, TrendingUp } from 'lucide-react';
+import Navigation from '../../components/Navigation';
+import { Footer } from '../../components/Footer';
+import surveyDashboard from '../../assets/survey-dashboard.jpg';
+import { useNavigate } from 'react-router-dom';
 
-const features = [
-  {
-    icon: <Brain className="w-12 h-12 text-indigo-400 mb-4" />,
-    title: "Sentiment Analysis",
-    desc: "AI automatically detects emotions and sentiments in responses with 94% accuracy."
-  },
-  {
-    icon: <BarChart className="w-12 h-12 text-blue-400 mb-4" />,
-    title: "Real-Time Analytics",
-    desc: "Live dashboards track responses, trends, and insights as they come in."
-  },
-  {
-    icon: <MessageSquare className="w-12 h-12 text-indigo-400 mb-4" />,
-    title: "Smart Recommendations",
-    desc: "AI suggests actions based on feedback patterns and sentiment trends."
-  }
-];
+const heroImages = [surveyDashboard, surveyDashboard, surveyDashboard, surveyDashboard];
 
-// Particle system component for Survey
-const SurveyParticlesBackground = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const itemTransition: Transition = {
+  type: "spring",
+  stiffness: 50,
+  damping: 20
+};
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    class Particle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      color: string;
-      opacity: number;
-
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.color = `rgba(${Math.random() * 100 + 100}, ${Math.random() * 100 + 100}, ${Math.random() * 100 + 200}, ${Math.random() * 0.3 + 0.1})`;
-        this.opacity = Math.random() * 0.6 + 0.2;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas.width) this.x = 0;
-        else if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        else if (this.y < 0) this.y = canvas.height;
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.opacity;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    const particles: Particle[] = [];
-    const particleCount = Math.min(100, Math.floor((window.innerWidth * window.innerHeight) / 15000));
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    const animate = () => {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        0,
-        canvas.width / 2,
-        canvas.height / 2,
-        Math.max(canvas.width, canvas.height) / 2
-      );
-      gradient.addColorStop(0, 'rgba(238, 242, 255, 0.8)');
-      gradient.addColorStop(0.5, 'rgba(224, 231, 255, 0.6)');
-      gradient.addColorStop(1, 'rgba(199, 210, 254, 0.4)');
-
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 -z-10 w-full h-full pointer-events-none"
-    />
-  );
+const buttonTransition: Transition = {
+  type: "spring",
+  stiffness: 500,
+  damping: 20
 };
 
 const containerVariants: Variants = {
@@ -153,68 +41,25 @@ const itemVariants: Variants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: {
-      type: "spring" as const,
-      stiffness: 80,
-      damping: 15,
-      mass: 1.2
-    }
-  }
-};
-
-const cardHoverVariants: Variants = {
-  rest: {
-    scale: 1,
-    y: 0,
-    rotateX: 0,
-    rotateY: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 400,
-      damping: 25
-    }
-  },
-  hover: {
-    scale: 1.08,
-    y: -15,
-    rotateX: 3,
-    rotateY: 2,
-    transition: {
-      type: "spring" as const,
-      stiffness: 500,
-      damping: 30
-    }
-  },
-  tap: {
-    scale: 0.95,
-    y: -5,
-    transition: {
-      type: "spring" as const,
-      stiffness: 600,
-      damping: 35
-    }
+    transition: itemTransition
   }
 };
 
 const buttonHoverVariants: Variants = {
   rest: {
     scale: 1,
-    boxShadow: "0 8px 25px -5px rgba(99, 102, 241, 0.15), 0 4px 10px -4px rgba(59, 130, 246, 0.1)"
+    boxShadow: "0 8px 25px -5px rgba(99, 102, 241, 0.15), 0 4px 10px -4px rgba(99, 102, 241, 0.1)"
   },
   hover: {
     scale: 1.08,
-    boxShadow: "0 25px 50px -12px rgba(99, 102, 241, 0.35), 0 12px 24px -8px rgba(59, 130, 246, 0.2)",
-    transition: {
-      type: "spring" as const,
-      stiffness: 500,
-      damping: 20
-    }
+    boxShadow: "0 25px 50px -12px rgba(99, 102, 241, 0.35), 0 12px 24px -8px rgba(99, 102, 241, 0.2)",
+    transition: buttonTransition
   },
   tap: {
     scale: 0.92,
     boxShadow: "0 4px 12px -2px rgba(99, 102, 241, 0.2)",
     transition: {
-      type: "spring" as const,
+      type: "spring",
       stiffness: 700,
       damping: 40
     }
@@ -227,26 +72,22 @@ const secondaryButtonVariants: Variants = {
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     color: "#3730a3",
     borderColor: "rgba(99, 102, 241, 0.3)",
-    boxShadow: "0 8px 25px -5px rgba(99, 102, 241, 0.1), 0 4px 10px -4px rgba(59, 130, 246, 0.05)"
+    boxShadow: "0 8px 25px -5px rgba(99, 102, 241, 0.1), 0 4px 10px -4px rgba(99, 102, 241, 0.05)"
   },
   hover: {
     scale: 1.08,
     backgroundColor: "rgba(99, 102, 241, 0.1)",
     color: "#312e81",
     borderColor: "rgba(99, 102, 241, 0.5)",
-    boxShadow: "0 25px 50px -12px rgba(99, 102, 241, 0.25), 0 12px 24px -8px rgba(59, 130, 246, 0.15)",
-    transition: {
-      type: "spring" as const,
-      stiffness: 500,
-      damping: 20
-    }
+    boxShadow: "0 25px 50px -12px rgba(99, 102, 241, 0.25), 0 12px 24px -8px rgba(99, 102, 241, 0.15)",
+    transition: buttonTransition
   },
   tap: {
     scale: 0.92,
     backgroundColor: "rgba(99, 102, 241, 0.08)",
     boxShadow: "0 4px 12px -2px rgba(99, 102, 241, 0.2)",
     transition: {
-      type: "spring" as const,
+      type: "spring",
       stiffness: 700,
       damping: 40
     }
@@ -254,18 +95,27 @@ const secondaryButtonVariants: Variants = {
 };
 
 const Survey = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(0);
-  const [hovered, setHovered] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (!isHovered) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [isHovered]);
+
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-indigo-50/50">
         <Navigation />
         <div className="flex items-center justify-center min-h-screen">
           <motion.div
@@ -279,545 +129,344 @@ const Survey = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
-      <SurveyParticlesBackground />
-
-      <div className="fixed inset-0 -z-5 overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-64 h-64 md:w-96 md:h-96 bg-indigo-300/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/3 -right-20 w-64 h-64 md:w-80 md:h-80 bg-blue-300/20 rounded-full blur-3xl animate-pulse-slower"></div>
-        <div className="absolute top-1/2 left-1/3 w-48 h-48 md:w-64 md:h-64 bg-violet-300/15 rounded-full blur-3xl animate-pulse-medium"></div>
-
-        <motion.div
-          className="absolute top-20 right-20 w-4 h-4 bg-indigo-400/40 rounded-full"
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.3, 0.8, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-40 left-20 w-6 h-6 bg-blue-400/30 rounded-full"
-          animate={{
-            y: [0, 40, 0],
-            x: [0, 10, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
-
+    <div className="min-h-screen bg-slate-50 overflow-hidden font-sans selection:bg-indigo-100 selection:text-indigo-900">
       <Navigation />
 
-      <section className="relative w-full min-h-screen flex items-center bg-gradient-to-br from-indigo-50 via-blue-50 to-violet-50 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-blue-500/5 to-violet-500/10"></div>
+      {/* Hero Section */}
+      <section className="relative w-full min-h-screen flex items-center pt-16 pb-12 lg:pt-12">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Main Gradient Mesh */}
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-indigo-200/40 via-indigo-50/20 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-blue-200/40 via-violet-50/20 to-transparent" />
 
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-          animate={{
-            x: [-100, 100],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
+          {/* Subtle Overlay Pattern */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-multiply" />
+        </div>
 
-        <div className="container mx-auto px-4 py-20">
-          <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <div className="space-y-8">
-              <motion.div
-                className="inline-flex items-center px-6 py-3 bg-indigo-500/15 backdrop-blur-md rounded-2xl border border-indigo-500/30"
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.05,
-                  backgroundColor: "rgba(99, 102, 241, 0.2)",
-                  transition: { type: "spring", stiffness: 400 }
-                }}
-              >
-                <Brain className="w-4 h-4 text-indigo-500 mr-2" />
-                <span className="text-sm text-indigo-600 font-semibold tracking-wide">Intelligent Insights</span>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left Content */}
+            <motion.div
+              className="space-y-8"
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+            >
+              {/* Stamp + Header Flex Container */}
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-8">
+                {/* Indigo Rubber Stamp */}
+                <div className="relative group">
+                  <motion.div
+                    initial={{ scale: 2, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                      mass: 1,
+                      delay: 0.2
+                    }}
+                    className="relative w-40 h-40 flex items-center justify-center"
+                  >
+                    {/* Ink Splatter Background Effect */}
+                    <div className="absolute inset-0 bg-indigo-900/5 blur-2xl rounded-full transform scale-90" />
+
+                    {/* Oscillating Container */}
+                    <motion.div
+                      animate={{ rotate: [-10, 10] }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut"
+                      }}
+                      className="w-full h-full"
+                    >
+                      <svg viewBox="0 0 200 200" className="w-full h-full text-[#3730a3] opacity-95 mix-blend-multiply">
+                        <defs>
+                          {/* Refined Grunge Filter - Clearer Text */}
+                          <filter id="indigo-grunge" x="-20%" y="-20%" width="140%" height="140%">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise" />
+                            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" />
+                          </filter>
+                        </defs>
+
+                        <g filter="url(#indigo-grunge)">
+                          {/* Outer Double Border */}
+                          <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" strokeWidth="3" />
+                          <circle cx="100" cy="100" r="86" fill="none" stroke="currentColor" strokeWidth="1" />
+
+                          {/* Inner Border */}
+                          <circle cx="100" cy="100" r="62" fill="none" stroke="currentColor" strokeWidth="1.5" />
+
+                          {/* Text Path - Top (Centered between r=86 and r=62 -> r=74) */}
+                          <path id="curve" d="M 26,100 A 74,74 0 1,1 174,100" fill="none" />
+
+                          {/* Text Path - Bottom (Centered at r=74) */}
+                          <path id="curve-bottom" d="M 26,100 A 74,74 0 0,0 174,100" fill="none" />
+
+                          <text className="font-black uppercase fill-current font-display tracking-widest" style={{ fontSize: '14px', fontWeight: 900 }}>
+                            <textPath href="#curve" startOffset="50%" textAnchor="middle">
+                              MoviCloud Labs Survey
+                            </textPath>
+                          </text>
+
+                          <text className="font-black uppercase fill-current font-display tracking-[0.3em]" style={{ fontSize: '12px', fontWeight: 900 }}>
+                            <textPath href="#curve-bottom" startOffset="50%" textAnchor="middle">
+                              ★ OFFICIAL ★
+                            </textPath>
+                          </text>
+
+                          {/* Center Icon */}
+                          <g transform="translate(76, 76) scale(1.5)">
+                            <Brain className="w-16 h-16" strokeWidth={2.5} />
+                          </g>
+                        </g>
+                      </svg>
+                    </motion.div>
+                  </motion.div>
+                </div>
+
+                {/* Header Text */}
+                <div className="text-center sm:text-left py-4">
+                  <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight tracking-tight pb-2">
+                    Survey &{" "}
+                    <motion.span
+                      animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 3,
+                        ease: "linear"
+                      }}
+                      className="pb-2 inline-block"
+                      style={{
+                        backgroundImage: "linear-gradient(110deg, #3730a3 45%, #818cf8 50%, #3730a3 55%)",
+                        backgroundSize: "250% auto",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      Feedback
+                    </motion.span>
+                  </h1>
+                </div>
               </motion.div>
 
-              <motion.h1
-                className="text-6xl md:text-8xl font-black text-slate-800 leading-tight"
-                variants={itemVariants}
-              >
-                Survey &{" "}
-                <motion.span
-                  className="bg-gradient-to-r from-indigo-500 via-blue-500 to-violet-500 bg-clip-text text-transparent"
-                  animate={{
-                    backgroundPosition: ["0%", "100%"],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }}
-                  style={{
-                    backgroundSize: "200% 100%",
-                  }}
-                >
-                  Feedback
-                </motion.span>
-              </motion.h1>
-
               <motion.p
-                className="text-2xl md:text-3xl text-slate-600 leading-relaxed font-light"
                 variants={itemVariants}
+                className="text-lg sm:text-xl text-slate-600 max-w-lg leading-relaxed font-medium"
               >
-                Intelligent feedback collection with <span className="font-semibold text-indigo-500">AI-powered sentiment analysis</span>, real-time analytics, and actionable insights.
+                Intelligent feedback collection with AI-powered sentiment analysis, real-time analytics, and actionable insights. Understand your audience like never before.
               </motion.p>
 
-              <motion.div
-                className="flex flex-col sm:flex-row gap-6"
-                variants={itemVariants}
-              >
-                <motion.div
+              {/* Buttons */}
+              <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+                <motion.button
+                  type="button"
+                  onClick={() => navigate('/demo', { state: { product: 'Survey' } })}
                   variants={buttonHoverVariants}
                   initial="rest"
                   whileHover="hover"
                   whileTap="tap"
+                  className="flex items-center gap-2 px-8 py-4 bg-indigo-500 text-white rounded-xl font-semibold shadow-lg shadow-indigo-500/20"
                 >
-                  <Button size="lg" onClick={() => navigate('/demo', { state: { product: 'Survey' } })} className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-lg px-10 py-7 rounded-2xl shadow-2xl">
-                    <span className="mr-3">Start Free Trial</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                </motion.div>
+                  Start Free Trial
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
 
-                <motion.div
+                <motion.button
                   variants={secondaryButtonVariants}
                   initial="rest"
                   whileHover="hover"
                   whileTap="tap"
+                  className="flex items-center gap-2 px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold hover:bg-slate-50"
                 >
-                  <Button size="lg" variant="outline" onClick={() => navigate('/demo', { state: { product: 'Survey' } })} className="border-2 font-bold text-lg px-10 py-7 rounded-2xl backdrop-blur-md relative overflow-hidden">
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-100/20 to-transparent"
-                      animate={{
-                        x: [-100, 100],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "linear",
-                        delay: Math.random() * 2
-                      }}
-                    />
-                    <Play className="w-5 h-5 mr-3" />
-                    <span className="relative z-10">See Examples</span>
-                  </Button>
+                  <Play className="w-5 h-5 fill-current" />
+                  See Examples
+                </motion.button>
+                <motion.div variants={itemVariants} className="pt-8 flex items-center gap-6 text-slate-500">
+                  <div className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-indigo-500" />
+                    <span className="text-sm font-medium">94% Accuracy</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-indigo-500" />
+                    <span className="text-sm font-medium">Real-time Data</span>
+                  </div>
                 </motion.div>
               </motion.div>
-            </div>
 
-            <motion.div
-              className="relative"
-              variants={itemVariants}
-              whileHover={{
-                scale: 1.02,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-            >
-              <motion.img
-                src={surveyImg}
-                alt="Survey Dashboard"
-                className="rounded-3xl shadow-2xl border border-indigo-200/50 backdrop-blur-sm"
-                whileHover={{
-                  boxShadow: "0 35px 60px -15px rgba(99, 102, 241, 0.3)",
-                  transition: { type: "spring", stiffness: 400 }
-                }}
-              />
+              {/* Trust Indicators */}
 
-              <motion.div
-                className="absolute -top-4 -left-4 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-indigo-200"
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-indigo-500" />
-                  <span className="text-sm font-semibold text-indigo-600">94% Accuracy</span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-4 -right-4 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-200"
-                animate={{
-                  y: [0, 10, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <BarChart className="w-4 h-4 text-blue-500" />
-                  <span className="text-sm font-semibold text-blue-600">Real-time Data</span>
-                </div>
-              </motion.div>
             </motion.div>
-          </motion.div>
-        </div>
 
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(15)].map((_, i) => (
+            {/* Right Image */}
             <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-indigo-400/30 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -100, 0],
-                opacity: [0, 1, 0],
-                scale: [0, 1, 0],
-              }}
-              transition={{
-                duration: Math.random() * 5 + 3,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
+              className="relative lg:h-[600px] flex items-center justify-center lg:justify-end"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <div className="relative w-full max-w-2xl">
+                {/* Main Image Container */}
+                <div
+                  className="relative rounded-3xl shadow-2xl shadow-indigo-900/10 border-4 border-white aspect-[4/3] w-full p-3 bg-white"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden isolation-isolate transform-gpu">
+                    <AnimatePresence mode="sync">
+                      <motion.img
+                        key={currentImageIndex}
+                        src={heroImages[currentImageIndex]}
+                        alt={`Survey Dashboard Interface ${currentImageIndex + 1}`}
+                        initial={{ opacity: 0 }}
+                        animate={{
+                          opacity: 1,
+                          scale: isHovered ? 1.25 : 1.1
+                        }}
+                        exit={{ opacity: 0 }}
+                        transition={{
+                          opacity: { duration: 1.8, ease: "easeInOut" },
+                          scale: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+                        }}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        style={{ objectPosition: 'center' }}
+                      />
+                    </AnimatePresence>
+
+                    {/* Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/10 to-transparent pointer-events-none z-10" />
+                  </div>
+                </div>
+
+                {/* Floating Badge 1 - Sentiment */}
+                <motion.div
+                  className="absolute -top-6 -left-6 md:-left-12 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3 z-20"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <div className="p-2.5 bg-indigo-100 rounded-xl">
+                    <Brain className="w-6 h-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Sentiment</p>
+                    <p className="text-sm font-bold text-slate-900">Positive Trend</p>
+                  </div>
+                </motion.div>
+
+                {/* Floating Badge 2 - Responses */}
+                <motion.div
+                  className="absolute -bottom-8 -right-4 md:-right-8 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3 z-20"
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  <div className="p-2.5 bg-blue-100 rounded-xl">
+                    <MessageSquare className="w-6 h-6 text-blue-500" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Responses</p>
+                    <p className="text-sm font-bold text-slate-900">10k+ Collected</p>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      <main className="pt-20 pb-16 relative z-10">
-        <section className="py-24 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-violet-500/5">
-          <motion.h2
-            className="text-5xl font-black text-center mb-20 bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              type: "spring",
-              stiffness: 80,
-              damping: 15
-            }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            AI-Powered Feedback Analysis
-          </motion.h2>
+      {/* Features Section (Frame 2) */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Deep Customer Insights</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">Go beyond simple surveys with our advanced feedback and analytics platform.</p>
+          </div>
 
-          <motion.div
-            className="relative w-full flex justify-center items-center h-96 mb-12"
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <AnimatePresence>
-              {features.map((feature, idx) => {
-                const isActive = idx === activeIndex;
-                const distance = 320;
-                const xOffset = hovered ? (idx - 1) * distance : 0;
-                const zIndex = isActive ? 50 : 10 + idx;
+          {/* Expanding Cards Container */}
+          <div className="flex flex-col lg:flex-row gap-2 h-[800px] lg:h-[500px] w-full max-w-7xl mx-auto">
+            {[
+              {
+                title: "Sentiment",
+                icon: <Brain className="w-8 h-8" />,
+                desc: "AI-powered emotion and sentiment detection.",
+                color: "from-indigo-600 via-violet-700 to-slate-900",
+                img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070"
+              },
+              {
+                title: "Analytics",
+                icon: <BarChart className="w-8 h-8" />,
+                desc: "Real-time response tracking and trends.",
+                color: "from-blue-500 via-indigo-600 to-slate-900",
+                img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015"
+              },
+              {
+                title: "Feedback",
+                icon: <MessageSquare className="w-8 h-8" />,
+                desc: "Collect feedback from multiple channels.",
+                color: "from-violet-500 via-purple-600 to-slate-900",
+                img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2070"
+              },
+              {
+                title: "Custom Forms",
+                icon: <FileText className="w-8 h-8" />,
+                desc: "Drag-and-drop survey builder with logic.",
+                color: "from-indigo-500 via-blue-600 to-slate-900",
+                img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2070"
+              },
+              {
+                title: "Distribution",
+                icon: <Share2 className="w-8 h-8" />,
+                desc: "Share surveys via email, link, or embed.",
+                color: "from-blue-600 via-cyan-700 to-slate-900",
+                img: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&q=80&w=2070"
+              },
+              {
+                title: "Export",
+                icon: <Download className="w-8 h-8" />,
+                desc: "Export data to Excel, CSV, or PDF formats.",
+                color: "from-slate-600 via-slate-800 to-black",
+                img: "https://images.unsplash.com/photo-1434626881859-194d67b2b86f?auto=format&fit=crop&q=80&w=2074"
+              }
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="relative flex-1 hover:flex-[4] transition-all duration-500 ease-in-out group overflow-hidden rounded-2xl cursor-pointer border border-slate-200 hover:border-indigo-400/50 shadow-sm hover:shadow-indigo-900/20"
+              >
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0">
+                  <img
+                    src={feature.img}
+                    alt={feature.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-b ${feature.color} opacity-90 group-hover:opacity-80 transition-opacity duration-500`} />
+                </div>
 
-                return (
-                  <motion.div
-                    key={idx}
-                    className="absolute w-full max-w-sm h-[420px] bg-white/95 backdrop-blur-lg rounded-3xl p-10 border border-indigo-100/60 shadow-2xl cursor-pointer flex flex-col items-center justify-center relative overflow-hidden"
-                    variants={cardHoverVariants}
-                    initial="rest"
-                    whileHover="hover"
-                    whileTap="tap"
-                    animate={{
-                      x: xOffset,
-                      scale: isActive ? 1.08 : 1,
-                      y: isActive ? -20 : 0,
-                    }}
-                    transition={{
-                      type: "spring" as const,
-                      stiffness: 200,
-                      damping: 25,
-                      duration: 0.8
-                    }}
-                    style={{
-                      zIndex,
-                      boxShadow: isActive
-                        ? "0 35px 60px -15px rgba(99, 102, 241, 0.4), 0 20px 40px -20px rgba(59, 130, 246, 0.3)"
-                        : "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                    }}
-                    onClick={() => setActiveIndex(idx)}
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-blue-50/30"
-                      whileHover={{ opacity: 1 }}
-                      initial={{ opacity: 0.5 }}
-                    />
+                {/* Content Container */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-white">
+                  {/* Collapsed State: Rotated Text */}
+                  <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0 delay-100 group-hover:delay-0">
+                    <div className="transform -rotate-90 whitespace-nowrap lg:rotate-[-90deg] rotate-0">
+                      <span className="text-xl font-bold tracking-widest uppercase opacity-90 drop-shadow-md">{feature.title}</span>
+                    </div>
+                  </div>
 
-                    <motion.div
-                      className="relative z-10"
-                      whileHover={{
-                        scale: 1.15,
-                        rotate: [0, -5, 5, 0],
-                        transition: {
-                          type: "spring" as const,
-                          stiffness: 500,
-                          duration: 0.6
-                        }
-                      }}
-                    >
+                  {/* Expanded State: Full Content */}
+                  <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 delay-0 group-hover:delay-200 flex flex-col items-center text-center">
+                    <div className="p-4 bg-white/20 backdrop-blur-md rounded-full mb-4 border border-white/30 shadow-lg">
                       {feature.icon}
-                    </motion.div>
-
-                    <motion.h3
-                      className="text-3xl font-bold mb-6 text-slate-800 text-center relative z-10"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {feature.title}
-                    </motion.h3>
-
-                    <motion.p
-                      className="text-slate-600 text-center leading-relaxed text-xl font-light relative z-10"
-                      initial={{ opacity: 0.8 }}
-                      whileHover={{ opacity: 1 }}
-                    >
-                      {feature.desc}
-                    </motion.p>
-
-                    <motion.div
-                      className={`absolute bottom-6 w-3 h-3 rounded-full ${isActive ? 'bg-gradient-to-r from-indigo-400 to-blue-400' : 'bg-slate-300'
-                        }`}
-                      animate={{
-                        scale: isActive ? [1, 1.8, 1] : 1,
-                        boxShadow: isActive ?
-                          "0 0 20px rgba(99, 102, 241, 0.5)" :
-                          "none"
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: isActive ? Infinity : 0,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </motion.div>
-        </section>
-
-        <section className="container mx-auto px-4 mb-24">
-          <motion.h2
-            className="text-5xl font-black text-center mb-20 bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              type: "spring",
-              stiffness: 80,
-              damping: 15
-            }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            Beyond Traditional Surveys
-          </motion.h2>
-
-          <motion.div
-            className="max-w-6xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-              <motion.div
-                className="bg-white/90 backdrop-blur-lg rounded-3xl p-10 border border-red-200 shadow-2xl relative overflow-hidden"
-                whileHover={{
-                  y: -8,
-                  scale: 1.02,
-                  boxShadow: "0 35px 60px -15px rgba(239, 68, 68, 0.25)"
-                }}
-                transition={{ type: "spring" as const, stiffness: 400, damping: 25 }}
-              >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-400 to-pink-400"></div>
-
-                <h3 className="text-3xl font-bold mb-8 text-red-500 flex items-center gap-4">
-                  <motion.div
-                    whileHover={{
-                      rotate: 180,
-                      scale: 1.2
-                    }}
-                    transition={{ type: "spring" as const, stiffness: 500 }}
-                  >
-                    <X className="w-8 h-8" />
-                  </motion.div>
-                  Basic Survey Tools
-                </h3>
-                <ul className="space-y-5">
-                  {[
-                    "Manual data analysis processes",
-                    "No sentiment detection capabilities",
-                    "Limited question types available",
-                    "Static reporting features only"
-                  ].map((item, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-start gap-4 text-slate-600 text-lg"
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.15, type: "spring" as const }}
-                      viewport={{ once: true }}
-                      whileHover={{ x: 5 }}
-                    >
-                      <X className="w-6 h-6 text-red-400 mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              <motion.div
-                className="bg-gradient-to-br from-indigo-500/15 to-blue-500/10 backdrop-blur-lg rounded-3xl p-10 border border-indigo-300 shadow-2xl relative overflow-hidden"
-                whileHover={{
-                  y: -8,
-                  scale: 1.02,
-                  boxShadow: "0 35px 60px -15px rgba(99, 102, 241, 0.35)"
-                }}
-                transition={{ type: "spring" as const, stiffness: 400, damping: 25 }}
-              >
-                <motion.div
-                  className="absolute top-0 right-0 w-40 h-40 bg-indigo-400/20 rounded-full -translate-y-20 translate-x-20 blur-3xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-400 to-blue-400"></div>
-
-                <h3 className="text-3xl font-bold mb-8 text-indigo-600 flex items-center gap-4 relative z-10">
-                  <motion.div
-                    whileHover={{
-                      scale: 1.3,
-                      rotate: 360
-                    }}
-                    transition={{ type: "spring" as const, stiffness: 500 }}
-                  >
-                    <Check className="w-8 h-8" />
-                  </motion.div>
-                  MoviCloud Survey
-                </h3>
-                <ul className="space-y-5 relative z-10">
-                  {[
-                    "AI-powered automated analysis",
-                    "Advanced sentiment detection",
-                    "Dynamic question logic systems",
-                    "Interactive live dashboards"
-                  ].map((item, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-start gap-4 text-slate-700 text-lg font-medium"
-                      initial={{ opacity: 0, x: 30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.15, type: "spring" as const }}
-                      viewport={{ once: true }}
-                      whileHover={{ x: 5 }}
-                    >
-                      <Check className="w-6 h-6 text-indigo-500 mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
-          </motion.div>
-        </section>
-
-        <section className="py-24 container mx-auto px-4">
-          <motion.div
-            className="bg-gradient-to-br from-indigo-500/20 via-blue-500/15 to-violet-500/10 backdrop-blur-xl rounded-3xl p-16 text-center border border-indigo-300/50 shadow-2xl max-w-6xl mx-auto relative overflow-hidden"
-            initial={{ opacity: 0, scale: 0.9, y: 50 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 80, damping: 20 }}
-            viewport={{ once: true }}
-          >
-            <motion.div
-              className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-400 via-blue-400 to-violet-400"
-              animate={{
-                scaleX: [0, 1, 0],
-                transformOrigin: ["0%", "50%", "100%"],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-
-            <div className="absolute -top-32 -right-32 w-64 h-64 bg-indigo-400/20 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl"></div>
-
-            <motion.h2
-              className="text-5xl md:text-6xl font-black mb-8 bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, type: "spring" }}
-              viewport={{ once: true }}
-            >
-              Start Collecting Smarter Feedback
-            </motion.h2>
-
-            <motion.p
-              className="text-2xl text-slate-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, type: "spring" }}
-              viewport={{ once: true }}
-            >
-              Join organizations using MoviCloud to gain deeper insights from their audience feedback with AI-powered sentiment analysis and real-time analytics.
-            </motion.p>
-
-            <motion.div
-              variants={buttonHoverVariants}
-              initial="rest"
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <Button size="lg" onClick={() => navigate('/demo', { state: { product: 'Survey' } })} className="bg-indigo-500 hover:bg-indigo-600 text-white font-black text-xl px-14 py-8 rounded-2xl shadow-2xl">
-                <motion.span
-                  whileHover={{
-                    scale: 1.1,
-                    x: 5
-                  }}
-                  transition={{ type: "spring" as const, stiffness: 500 }}
-                  className="flex items-center"
-                >
-                  Start Free Trial
-                  <ArrowRight className="w-6 h-6 ml-3" />
-                </motion.span>
-              </Button>
-            </motion.div>
-          </motion.div>
-        </section>
-      </main>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 tracking-tight drop-shadow-lg">{feature.title}</h3>
+                    <p className="text-indigo-50 max-w-xs leading-relaxed drop-shadow-md font-medium">{feature.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
