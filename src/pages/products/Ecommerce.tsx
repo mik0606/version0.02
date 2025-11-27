@@ -390,44 +390,44 @@ const Ecommerce = () => {
           <div className="flex flex-col lg:flex-row gap-2 h-[800px] lg:h-[500px] w-full max-w-7xl mx-auto">
             {[
               {
-                title: "Smart Tracking",
+                title: "Product & Order Management",
                 icon: <Package className="w-8 h-8" />,
-                desc: "Real-time inventory tracking across warehouses.",
+                desc: "Manage catalogs, inventory, orders, returns, and fulfillment seamlessly.",
                 color: "from-teal-600 via-emerald-700 to-slate-900",
                 img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Forecasting",
+                title: "Payment & Checkout Engine",
                 icon: <LineChart className="w-8 h-8" />,
-                desc: "AI predicts demand to prevent stockouts.",
+                desc: "Fast, secure checkout with multi-payment support and improved conversion rates.",
                 color: "from-cyan-500 via-teal-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Replenishment",
+                title: "Sales & Conversion Analytics",
                 icon: <Zap className="w-8 h-8" />,
-                desc: "Automated purchase orders and reordering.",
+                desc: "Real-time insights on product performance, funnel metrics, and revenue breakdown.",
                 color: "from-emerald-500 via-green-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1566576912906-600aceeb7aef?auto=format&fit=crop&q=80&w=2087"
               },
               {
-                title: "Multi-Channel",
+                title: "Inventory Forecasting & Demand Trends",
                 icon: <Globe className="w-8 h-8" />,
-                desc: "Sync inventory across all sales channels.",
+                desc: "Predict stock levels and avoid overstock or stockouts using advanced analytics.",
                 color: "from-blue-500 via-cyan-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Returns",
+                title: "AI Product Recommendations",
                 icon: <RefreshCw className="w-8 h-8" />,
-                desc: "Streamlined returns management process.",
+                desc: "Boost sales with personalized recommendations powered by user behavior and browsing history.",
                 color: "from-teal-500 via-cyan-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&q=80&w=2076"
               },
               {
-                title: "Logistics",
+                title: "AI Fraud Detection",
                 icon: <Truck className="w-8 h-8" />,
-                desc: "Integrated shipping and carrier management.",
+                desc: "Machine learning flags suspicious orders and payment anomalies instantly.",
                 color: "from-slate-600 via-slate-800 to-black",
                 img: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=2070"
               }

@@ -389,44 +389,44 @@ const Survey = () => {
           <div className="flex flex-col lg:flex-row gap-2 h-[800px] lg:h-[500px] w-full max-w-7xl mx-auto">
             {[
               {
-                title: "Sentiment",
+                title: "Survey Builder & Templates",
                 icon: <Brain className="w-8 h-8" />,
-                desc: "AI-powered emotion and sentiment detection.",
+                desc: "Create engaging surveys using customizable templates and drag-and-drop tools.",
                 color: "from-indigo-600 via-violet-700 to-slate-900",
                 img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Analytics",
+                title: "Real-Time Response Collection",
                 icon: <BarChart className="w-8 h-8" />,
-                desc: "Real-time response tracking and trends.",
+                desc: "Capture responses instantly through links, QR codes, and mobile forms.",
                 color: "from-blue-500 via-indigo-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015"
               },
               {
-                title: "Feedback",
+                title: "Sentiment & Feedback Analytics",
                 icon: <MessageSquare className="w-8 h-8" />,
-                desc: "Collect feedback from multiple channels.",
+                desc: "Heatmaps and charts showing customer emotions, trends, and pain points.",
                 color: "from-violet-500 via-purple-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Custom Forms",
+                title: "Comparative Survey Insights",
                 icon: <FileText className="w-8 h-8" />,
-                desc: "Drag-and-drop survey builder with logic.",
+                desc: "Compare responses across teams, branches, products, or time periods.",
                 color: "from-indigo-500 via-blue-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Distribution",
+                title: "AI Response Summarizer",
                 icon: <Share2 className="w-8 h-8" />,
-                desc: "Share surveys via email, link, or embed.",
+                desc: "Automatically generates key takeaways, themes, and insights from open responses.",
                 color: "from-blue-600 via-cyan-700 to-slate-900",
                 img: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Export",
+                title: "Predictive Satisfaction Scoring",
                 icon: <Download className="w-8 h-8" />,
-                desc: "Export data to Excel, CSV, or PDF formats.",
+                desc: "AI estimates customer satisfaction and churn risk based on survey beha",
                 color: "from-slate-600 via-slate-800 to-black",
                 img: "https://images.unsplash.com/photo-1434626881859-194d67b2b86f?auto=format&fit=crop&q=80&w=2074"
               }

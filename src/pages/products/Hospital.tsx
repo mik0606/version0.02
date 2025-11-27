@@ -392,82 +392,83 @@ const Hospital = () => {
                     <div className="flex flex-col lg:flex-row gap-2 h-[800px] lg:h-[500px] w-full max-w-7xl mx-auto">
                         {[
                             {
-                                title: "Patient Records",
+                                title: "Digital Patient Records",
                                 icon: <Activity className="w-8 h-8" />,
-                                desc: "Complete digital history tracking with AI insights.",
+                                desc: "Centralized EMR with instant access to patient history, allergies, diagnostics, and treatment plans—reducing paperwork and medical errors.",
                                 color: "from-blue-600 via-indigo-700 to-slate-900",
                                 img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2070"
                             },
                             {
-                                title: "Smart Scheduling",
+                                title: "Appointment & Bed Management",
                                 icon: <Check className="w-8 h-8" />,
-                                desc: "AI-powered appointment management system.",
+                                desc: "Smart scheduling and real-time bed availability ensure smooth patient flow and optimized resource usage.",
                                 color: "from-indigo-500 via-purple-600 to-slate-900",
                                 img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2053"
                             },
                             {
-                                title: "Billing & Insurance",
+                                title: "Revenue & Resource Optimization",
                                 icon: <ShieldPlus className="w-8 h-8" />,
-                                desc: "Automated claims processing and revenue cycle.",
+                                desc: "Predictive analytics identify revenue leaks, under-utilized departments, and high-performing service units.",
                                 color: "from-sky-500 via-blue-600 to-slate-900",
                                 img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=2070"
                             },
                             {
-                                title: "Pharmacy",
+                                title: "Clinical & Operational Dashboards",
                                 icon: <Heart className="w-8 h-8" />,
-                                desc: "Real-time inventory and prescription tracking.",
+                                desc: "Track admissions, discharges, referrals, lab performance, and billing using real-time dashboards for improved outcomes.",
                                 color: "from-teal-500 via-emerald-600 to-slate-900",
                                 img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&q=80&w=2069"
                             },
                             {
-                                title: "Telemedicine",
+                                title: "AI Diagnosis Assist",
                                 icon: <Play className="w-8 h-8" />,
-                                desc: "Integrated remote consultation platform.",
+                                desc: "AI suggests probable diagnoses based on symptoms, patient history, and test data—helping clinicians make faster decisions.",
                                 color: "from-violet-500 via-fuchsia-600 to-slate-900",
                                 img: "https://images.unsplash.com/photo-1576091160550-217358c7db81?auto=format&fit=crop&q=80&w=2070"
                             },
                             {
-                                title: "Analytics",
+                                title: "Predictive Patient Risk Scoring",
                                 icon: <ArrowRight className="w-8 h-8" />,
-                                desc: "Deep insights into hospital performance.",
+                                desc: "Machine-learning models flag high-risk patients for complications, readmissions, or emergencies.",
                                 color: "from-slate-600 via-slate-800 to-black",
                                 img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070"
                             }
-                        ].map((feature, index) => (
-                            <div
-                                key={index}
-                                className="relative flex-1 hover:flex-[4] transition-all duration-500 ease-in-out group overflow-hidden rounded-2xl cursor-pointer border border-slate-200 hover:border-blue-400/50 shadow-sm hover:shadow-blue-900/20"
-                            >
-                                {/* Background Image with Overlay */}
-                                <div className="absolute inset-0">
-                                    <img
-                                        src={feature.img}
-                                        alt={feature.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                    <div className={`absolute inset-0 bg-gradient-to-b ${feature.color} opacity-90 group-hover:opacity-80 transition-opacity duration-500`} />
-                                </div>
-
-                                {/* Content Container */}
-                                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-white">
-                                    {/* Collapsed State: Rotated Text */}
-                                    <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0 delay-100 group-hover:delay-0">
-                                        <div className="transform -rotate-90 whitespace-nowrap lg:rotate-[-90deg] rotate-0">
-                                            <span className="text-xl font-bold tracking-widest uppercase opacity-90 drop-shadow-md">{feature.title}</span>
-                                        </div>
+                        ]
+                            .map((feature, index) => (
+                                <div
+                                    key={index}
+                                    className="relative flex-1 hover:flex-[4] transition-all duration-500 ease-in-out group overflow-hidden rounded-2xl cursor-pointer border border-slate-200 hover:border-blue-400/50 shadow-sm hover:shadow-blue-900/20"
+                                >
+                                    {/* Background Image with Overlay */}
+                                    <div className="absolute inset-0">
+                                        <img
+                                            src={feature.img}
+                                            alt={feature.title}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
+                                        <div className={`absolute inset-0 bg-gradient-to-b ${feature.color} opacity-90 group-hover:opacity-80 transition-opacity duration-500`} />
                                     </div>
 
-                                    {/* Expanded State: Full Content */}
-                                    <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 delay-0 group-hover:delay-200 flex flex-col items-center text-center">
-                                        <div className="p-4 bg-white/20 backdrop-blur-md rounded-full mb-4 border border-white/30 shadow-lg">
-                                            {feature.icon}
+                                    {/* Content Container */}
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-white">
+                                        {/* Collapsed State: Rotated Text */}
+                                        <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0 delay-100 group-hover:delay-0">
+                                            <div className="transform -rotate-90 whitespace-nowrap lg:rotate-[-90deg] rotate-0">
+                                                <span className="text-xl font-bold tracking-widest uppercase opacity-90 drop-shadow-md">{feature.title}</span>
+                                            </div>
                                         </div>
-                                        <h3 className="text-2xl font-bold mb-2 tracking-tight drop-shadow-lg">{feature.title}</h3>
-                                        <p className="text-blue-50 max-w-xs leading-relaxed drop-shadow-md font-medium">{feature.desc}</p>
+
+                                        {/* Expanded State: Full Content */}
+                                        <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 delay-0 group-hover:delay-200 flex flex-col items-center text-center">
+                                            <div className="p-4 bg-white/20 backdrop-blur-md rounded-full mb-4 border border-white/30 shadow-lg">
+                                                {feature.icon}
+                                            </div>
+                                            <h3 className="text-2xl font-bold mb-2 tracking-tight drop-shadow-lg">{feature.title}</h3>
+                                            <p className="text-blue-50 max-w-xs leading-relaxed drop-shadow-md font-medium">{feature.desc}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                     </div>
                 </div>
             </section>

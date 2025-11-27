@@ -389,44 +389,44 @@ const Transport = () => {
           <div className="flex flex-col lg:flex-row gap-2 h-[800px] lg:h-[500px] w-full max-w-7xl mx-auto">
             {[
               {
-                title: "Smart Routing",
+                title: "Fleet & Trip Scheduling",
                 icon: <MapPin className="w-8 h-8" />,
-                desc: "AI-driven route optimization to reduce fuel and time.",
+                desc: "Plan and assign routes effortlessly with centralized vehicle and driver management.",
                 color: "from-green-600 via-emerald-700 to-slate-900",
                 img: "https://images.unsplash.com/photo-1506485929846-95f06196d120?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Fleet Analytics",
+                title: "Live GPS Tracking",
                 icon: <Gauge className="w-8 h-8" />,
-                desc: "Real-time performance metrics and reporting.",
+                desc: "Monitor vehicle movement, speed, and route deviations in real time",
                 color: "from-emerald-500 via-green-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Maintenance",
+                title: "Route Efficiency Analytics",
                 icon: <ShieldPlus className="w-8 h-8" />,
-                desc: "Predictive vehicle health monitoring and alerts.",
+                desc: "Visual reports on fuel consumption, idle time, and best-performing routes to reduce operational costs.",
                 color: "from-teal-500 via-cyan-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Fuel Control",
+                title: "Maintenance & Breakdown Insights",
                 icon: <Battery className="w-8 h-8" />,
-                desc: "Monitor and reduce fuel consumption efficiently.",
+                desc: "Analyze breakdown trends, spare-part usage, and maintenance frequency",
                 color: "from-lime-500 via-green-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?auto=format&fit=crop&q=80&w=2074"
               },
               {
-                title: "Driver Safety",
+                title: "AI Route Optimization",
                 icon: <Truck className="w-8 h-8" />,
-                desc: "Monitor driver behavior and ensure safety compliance.",
+                desc: "AI recommends the fastest, safest, and most fuel-efficient routes based on real-time traffic and historical patterns.",
                 color: "from-green-500 via-teal-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Logistics",
+                title: "Predictive Vehicle Maintenance",
                 icon: <Package className="w-8 h-8" />,
-                desc: "End-to-end supply chain visibility and management.",
+                desc: "Machine learning forecasts part failure and maintenance needs before breakdowns occur.",
                 color: "from-slate-600 via-slate-800 to-black",
                 img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2070"
               }

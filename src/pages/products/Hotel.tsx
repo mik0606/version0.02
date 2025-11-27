@@ -390,44 +390,44 @@ const Hotel = () => {
           <div className="flex flex-col lg:flex-row gap-2 h-[800px] lg:h-[500px] w-full max-w-7xl mx-auto">
             {[
               {
-                title: "Smart Booking",
+                title: "Room Booking & Reservation Engine",
                 icon: <HotelIcon className="w-8 h-8" />,
-                desc: "Intelligent reservation system with channel management.",
+                desc: "Manage direct, OTA, and walk-in reservations seamlessly with dynamic room allocation.",
                 color: "from-amber-600 via-orange-700 to-slate-900",
                 img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Personalization",
+                title: "Guest Experience Management",
                 icon: <Star className="w-8 h-8" />,
-                desc: "AI-driven guest preferences and recommendations.",
+                desc: "Check-ins, requests, concierge services, and billing—all handled from a unified interface.",
                 color: "from-orange-500 via-amber-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Revenue",
+                title: "Occupancy & Revenue Dashboards",
                 icon: <DollarSign className="w-8 h-8" />,
-                desc: "Dynamic pricing to maximize profitability.",
+                desc: "Track RevPAR, occupancy rate, booking trends, and OTA performance to grow revenue.",
                 color: "from-yellow-500 via-amber-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2072"
               },
               {
-                title: "Housekeeping",
+                title: "F&B and Inventory Cost Control",
                 icon: <Bed className="w-8 h-8" />,
-                desc: "Real-time room status and staff management.",
+                desc: "Analytics on menu profitability, consumption patterns, and wastage reduction.",
                 color: "from-amber-500 via-orange-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=2070"
               },
               {
-                title: "Channels",
+                title: "AI Demand Forecasting",
                 icon: <Globe className="w-8 h-8" />,
-                desc: "Unified management of all booking channels.",
+                desc: "Predict peak seasons, guest trends, and optimal pricing strategies for higher profits..",
                 color: "from-orange-500 via-red-600 to-slate-900",
                 img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=2021"
               },
               {
-                title: "Events",
+                title: "AI Guest Personalization",
                 icon: <Calendar className="w-8 h-8" />,
-                desc: "Seamless event and conference planning tools.",
+                desc: "Recommends room upgrades, services, and offers based on guest behavior and",
                 color: "from-slate-600 via-slate-800 to-black",
                 img: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2070"
               }
