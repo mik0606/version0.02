@@ -4,10 +4,13 @@ import { ArrowRight, Play, Check, Users, Target, Building2, FileText, Calendar, 
 import Navigation from '../../components/Navigation';
 import DemoCTA from '../../components/DemoCTA';
 import { Footer } from '../../components/Footer';
-import officeDashboard from '../../assets/office-dashboard.jpg';
+import office1 from '../../assets/office1.png';
+import office2 from '../../assets/office2.png';
+import office3 from '../../assets/office3.png';
+import office4 from '../../assets/office4.png';
 import { useNavigate } from 'react-router-dom';
 
-const heroImages = [officeDashboard, officeDashboard, officeDashboard, officeDashboard];
+const heroImages = [office2, office1, office4, office3];
 
 const itemTransition: Transition = {
   type: "spring",
@@ -312,7 +315,7 @@ const Office = () => {
               <div className="relative w-full max-w-2xl">
                 {/* Main Image Container */}
                 <div
-                  className="relative rounded-3xl shadow-2xl shadow-purple-900/10 border-4 border-white aspect-[4/3] w-full p-3 bg-white"
+                  className="relative rounded-3xl shadow-2xl shadow-purple-900/10 border-4 border-white aspect-[4/3] w-full px-3 py-12 bg-white"
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
@@ -325,7 +328,7 @@ const Office = () => {
                         initial={{ opacity: 0 }}
                         animate={{
                           opacity: 1,
-                          scale: isHovered ? 1.25 : 1.1
+                          scale: isHovered ? 1.05 : 1
                         }}
                         exit={{ opacity: 0 }}
                         transition={{
