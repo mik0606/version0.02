@@ -103,8 +103,8 @@ export const Navigation = () => {
 
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="font-heading text-base">Industries</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="w-[1200px] p-0 overflow-hidden rounded-xl bg-white shadow-xl">
+                  <NavigationMenuContent className="!mt-0 !pt-0 rounded-none">
+                    <div className="w-screen max-w-none p-0 overflow-hidden bg-white shadow-xl rounded-b-xl !mt-0">
                       {/* MAIN GRID */}
                       <ul className="grid grid-cols-4 gap-4 p-6 list-none m-0">
                         <ListItem
@@ -195,8 +195,8 @@ export const Navigation = () => {
 
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="font-heading text-base">Services</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="w-[900px] p-0 overflow-hidden rounded-xl bg-white shadow-xl">
+                  <NavigationMenuContent className="!mt-0 !pt-0 rounded-none">
+                    <div className="w-screen max-w-none p-0 overflow-hidden bg-white shadow-xl rounded-b-xl !mt-0">
                       {/* MAIN GRID */}
                       <ul className="grid grid-cols-3 gap-4 p-6 list-none m-0">
                         <ListItem
