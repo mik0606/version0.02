@@ -4,10 +4,13 @@ import { ArrowRight, Play, Check, ShieldPlus, MapPin, Gauge, Battery, Zap, Packa
 import Navigation from '../../components/Navigation';
 import DemoCTA from '../../components/DemoCTA';
 import { Footer } from '../../components/Footer';
-import transportDashboard from '../../assets/transport-dashboard.jpg';
+import transport1 from '../../assets/transport1.png';
+import transport2 from '../../assets/transport2.png';
+import transport3 from '../../assets/transport3.png';
+import transport4 from '../../assets/transport4.png';
 import { useNavigate } from 'react-router-dom';
 
-const heroImages = [transportDashboard, transportDashboard, transportDashboard, transportDashboard];
+const heroImages = [transport1, transport2, transport3, transport4];
 
 const itemTransition: Transition = {
   type: "spring",
@@ -325,7 +328,7 @@ const Transport = () => {
                         initial={{ opacity: 0 }}
                         animate={{
                           opacity: 1,
-                          scale: isHovered ? 1.25 : 1.1
+                          scale: isHovered ? 1.05 : 1
                         }}
                         exit={{ opacity: 0 }}
                         transition={{

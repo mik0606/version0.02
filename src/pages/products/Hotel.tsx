@@ -1,14 +1,16 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion, Variants, Transition, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Play, Check, Hotel as HotelIcon, Star, DollarSign, Bed, Globe, Calendar, Users } from 'lucide-react';
 import Navigation from '../../components/Navigation';
 import DemoCTA from '../../components/DemoCTA';
 import { Footer } from '../../components/Footer';
-import hotelDashboard from '../../assets/hotel-dashboard.jpg';
+import Hotel1 from '../../assets/Hotel1.png';
+import Hotel2 from '../../assets/Hotel2.png';
+import Hotel3 from '../../assets/Hotel3.png';
+import Hotel4 from '../../assets/Hotel4.jpg';
 import { useNavigate } from 'react-router-dom';
 
-const heroImages = [hotelDashboard, hotelDashboard, hotelDashboard, hotelDashboard];
+const heroImages = [Hotel1, Hotel2, Hotel3, Hotel4];
 
 const itemTransition: Transition = {
   type: "spring",
@@ -326,7 +328,7 @@ const Hotel = () => {
                         initial={{ opacity: 0 }}
                         animate={{
                           opacity: 1,
-                          scale: isHovered ? 1.25 : 1.1
+                          scale: isHovered ? 1.05 : 1
                         }}
                         exit={{ opacity: 0 }}
                         transition={{
