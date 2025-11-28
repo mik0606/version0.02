@@ -9,6 +9,7 @@ import transport2 from '../../assets/transport2.png';
 import transport3 from '../../assets/transport3.png';
 import transport4 from '../../assets/transport4.png';
 import { useNavigate } from 'react-router-dom';
+import StampBadge from '../../components/StampBadge';
 
 const heroImages = [transport1, transport2, transport3, transport4];
 
@@ -160,77 +161,7 @@ const Transport = () => {
               {/* Stamp + Header Flex Container */}
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-8">
                 {/* Green Rubber Stamp */}
-                <div className="relative group">
-                  <motion.div
-                    initial={{ scale: 2, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 20,
-                      mass: 1,
-                      delay: 0.2
-                    }}
-                    className="relative w-40 h-40 flex items-center justify-center"
-                  >
-                    {/* Ink Splatter Background Effect */}
-                    <div className="absolute inset-0 bg-green-900/5 blur-2xl rounded-full transform scale-90" />
-
-                    {/* Oscillating Container */}
-                    <motion.div
-                      animate={{ rotate: [-10, 10] }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        ease: "easeInOut"
-                      }}
-                      className="w-full h-full"
-                    >
-                      <svg viewBox="0 0 200 200" className="w-full h-full text-[#15803d] opacity-95 mix-blend-multiply">
-                        <defs>
-                          {/* Refined Grunge Filter - Clearer Text */}
-                          <filter id="green-grunge" x="-20%" y="-20%" width="140%" height="140%">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise" />
-                            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" />
-                          </filter>
-                        </defs>
-
-                        <g filter="url(#green-grunge)">
-                          {/* Outer Double Border */}
-                          <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" strokeWidth="3" />
-                          <circle cx="100" cy="100" r="86" fill="none" stroke="currentColor" strokeWidth="1" />
-
-                          {/* Inner Border */}
-                          <circle cx="100" cy="100" r="62" fill="none" stroke="currentColor" strokeWidth="1.5" />
-
-                          {/* Text Path - Top (Centered between r=86 and r=62 -> r=74) */}
-                          <path id="curve" d="M 26,100 A 74,74 0 1,1 174,100" fill="none" />
-
-                          {/* Text Path - Bottom (Centered at r=74) */}
-                          <path id="curve-bottom" d="M 26,100 A 74,74 0 0,0 174,100" fill="none" />
-
-                          <text className="font-black uppercase fill-current font-display tracking-widest" style={{ fontSize: '14px', fontWeight: 900 }}>
-                            <textPath href="#curve" startOffset="50%" textAnchor="middle">
-                              MoviCloud Labs Transport
-                            </textPath>
-                          </text>
-
-                          <text className="font-black uppercase fill-current font-display tracking-[0.3em]" style={{ fontSize: '12px', fontWeight: 900 }}>
-                            <textPath href="#curve-bottom" startOffset="50%" textAnchor="middle">
-                              ★ OFFICIAL ★
-                            </textPath>
-                          </text>
-
-                          {/* Center Icon */}
-                          <g transform="translate(76, 76) scale(1.5)">
-                            <Truck className="w-16 h-16" strokeWidth={2.5} />
-                          </g>
-                        </g>
-                      </svg>
-                    </motion.div>
-                  </motion.div>
-                </div>
+                <StampBadge />
 
                 {/* Header Text */}
                 <div className="text-center sm:text-left py-4">
