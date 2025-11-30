@@ -158,17 +158,17 @@ const CareerPage: React.FC = () => {
           <div className="grid grid-cols-12 gap-6 items-center">
             <div className="col-span-12 md:col-span-4 space-y-6">
               <div className="rounded-2xl overflow-hidden h-64 shadow-lg">
-                <img src="/career/office1.png" alt="Office Life" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <img src="/career/office1.webp" alt="Office Life" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
               </div>
             </div>
             <div className="col-span-12 md:col-span-4">
               <div className="rounded-2xl overflow-hidden h-96 shadow-xl">
-                <img src="/career/hero.png" alt="Team Collaboration" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <img src="/career/hero.webp" alt="Team Collaboration" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
               </div>
             </div>
             <div className="col-span-12 md:col-span-4 space-y-6">
               <div className="rounded-2xl overflow-hidden h-64 shadow-lg">
-                <img src="/career/office2.png" alt="Meeting" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <img src="/career/office2.webp" alt="Meeting" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
               </div>
             </div>
           </div>

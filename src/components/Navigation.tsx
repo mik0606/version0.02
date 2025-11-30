@@ -293,218 +293,220 @@ export const Navigation = () => {
           <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X /> : <Menu />}
           </button>
-        </div>
-      </div>
+        </div >
+      </div >
 
       {/* ---------------------- MOBILE MENU OVERLAY & SIDEBAR ---------------------- */}
       <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 top-16 bg-black/60 backdrop-blur-sm z-[40] md:hidden"
-              onClick={() => setIsOpen(false)}
-              aria-hidden="true"
-            />
+        {
+          isOpen && (
+            <>
+              {/* Overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 top-16 bg-black/60 backdrop-blur-sm z-[40] md:hidden"
+                onClick={() => setIsOpen(false)}
+                aria-hidden="true"
+              />
 
-            {/* Sidebar */}
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-16 left-0 h-[calc(100dvh-4rem)] w-[85%] max-w-sm bg-white/95 backdrop-blur-xl z-[50] shadow-2xl md:hidden flex flex-col border-r border-slate-100"
-              style={{ backgroundColor: "rgba(255, 255, 255, 0.98)" }}
-            >
-              {/* Scrollable Content */}
-              <div className="grow overflow-y-auto py-6 px-4 space-y-2">
-                <motion.div
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    visible: { transition: { staggerChildren: 0.05 } },
-                  }}
-                  className="space-y-2"
-                >
-                  <motion.div variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }}>
-                    <Link
-                      to="/"
-                      onClick={() => setIsOpen(false)}
-                      className={cn(
-                        "flex items-center justify-between p-3.5 rounded-xl font-heading font-semibold text-lg transition-colors group",
-                        isActive("/")
-                          ? "bg-blue-50 text-blue-600"
-                          : "hover:bg-blue-50/50 text-slate-800"
-                      )}
-                    >
-                      Home
-                      <ArrowRight
+              {/* Sidebar */}
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="fixed top-16 left-0 h-[calc(100dvh-4rem)] w-[85%] max-w-sm bg-white/95 backdrop-blur-xl z-[50] shadow-2xl md:hidden flex flex-col border-r border-slate-100"
+                style={{ backgroundColor: "rgba(255, 255, 255, 0.98)" }}
+              >
+                {/* Scrollable Content */}
+                <div className="grow overflow-y-auto py-6 px-4 space-y-2">
+                  <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                      visible: { transition: { staggerChildren: 0.05 } },
+                    }}
+                    className="space-y-2"
+                  >
+                    <motion.div variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }}>
+                      <Link
+                        to="/"
+                        onClick={() => setIsOpen(false)}
                         className={cn(
-                          "w-4 h-4 transition-colors",
-                          isActive("/") ? "text-blue-600" : "text-slate-300 group-hover:text-blue-500"
+                          "flex items-center justify-between p-3.5 rounded-xl font-heading font-semibold text-lg transition-colors group",
+                          isActive("/")
+                            ? "bg-blue-50 text-blue-600"
+                            : "hover:bg-blue-50/50 text-slate-800"
                         )}
-                      />
-                    </Link>
-                  </motion.div>
+                      >
+                        Home
+                        <ArrowRight
+                          className={cn(
+                            "w-4 h-4 transition-colors",
+                            isActive("/") ? "text-blue-600" : "text-slate-300 group-hover:text-blue-500"
+                          )}
+                        />
+                      </Link>
+                    </motion.div>
 
-                  {/* Industries Accordion */}
-                  <motion.div variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }} className="space-y-1">
-                    <button
-                      onClick={() => toggleSubmenu("industries")}
-                      className={cn(
-                        "w-full flex items-center justify-between p-3.5 rounded-xl font-heading font-semibold text-lg transition-colors",
-                        openSubmenu === "industries" || industries.some(i => isActive(i.href))
-                          ? "bg-slate-50 text-blue-600"
-                          : "text-slate-800 hover:bg-slate-50"
-                      )}
-                    >
-                      <span>Industries</span>
-                      <ChevronDown
+                    {/* Industries Accordion */}
+                    <motion.div variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }} className="space-y-1">
+                      <button
+                        onClick={() => toggleSubmenu("industries")}
                         className={cn(
-                          "w-5 h-5 transition-transform duration-200",
-                          openSubmenu === "industries" ? "rotate-180 text-blue-500" : "text-slate-400"
+                          "w-full flex items-center justify-between p-3.5 rounded-xl font-heading font-semibold text-lg transition-colors",
+                          openSubmenu === "industries" || industries.some(i => isActive(i.href))
+                            ? "bg-slate-50 text-blue-600"
+                            : "text-slate-800 hover:bg-slate-50"
                         )}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {openSubmenu === "industries" && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pl-4 pr-2 pb-2 pt-1 space-y-1">
-                            {industries.map((item, idx) => (
-                              <Link
-                                key={idx}
-                                to={item.href}
-                                onClick={() => setIsOpen(false)}
-                                className={cn(
-                                  "flex items-center gap-3 p-2.5 rounded-lg transition-colors",
-                                  isActive(item.href)
-                                    ? "bg-blue-50 text-blue-700"
-                                    : "hover:bg-blue-50 text-slate-600 hover:text-blue-700"
-                                )}
-                              >
-                                <div
+                      >
+                        <span>Industries</span>
+                        <ChevronDown
+                          className={cn(
+                            "w-5 h-5 transition-transform duration-200",
+                            openSubmenu === "industries" ? "rotate-180 text-blue-500" : "text-slate-400"
+                          )}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {openSubmenu === "industries" && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-4 pr-2 pb-2 pt-1 space-y-1">
+                              {industries.map((item, idx) => (
+                                <Link
+                                  key={idx}
+                                  to={item.href}
+                                  onClick={() => setIsOpen(false)}
                                   className={cn(
-                                    "p-1.5 rounded-md shrink-0",
-                                    isActive(item.href) ? "text-blue-600 bg-white" : "text-blue-500 bg-blue-50"
+                                    "flex items-center gap-3 p-2.5 rounded-lg transition-colors",
+                                    isActive(item.href)
+                                      ? "bg-blue-50 text-blue-700"
+                                      : "hover:bg-blue-50 text-slate-600 hover:text-blue-700"
                                   )}
                                 >
-                                  {item.icon}
-                                </div>
-                                <span className="text-sm font-medium leading-tight">{item.title}</span>
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-
-                  {/* Services Accordion */}
-                  <motion.div variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }} className="space-y-1">
-                    <button
-                      onClick={() => toggleSubmenu("services")}
-                      className={cn(
-                        "w-full flex items-center justify-between p-3.5 rounded-xl font-heading font-semibold text-lg transition-colors",
-                        openSubmenu === "services"
-                          ? "bg-slate-50 text-blue-600"
-                          : "text-slate-800 hover:bg-slate-50"
-                      )}
-                    >
-                      <span>Services</span>
-                      <ChevronDown
-                        className={cn(
-                          "w-5 h-5 transition-transform duration-200",
-                          openSubmenu === "services" ? "rotate-180 text-blue-500" : "text-slate-400"
+                                  <div
+                                    className={cn(
+                                      "p-1.5 rounded-md shrink-0",
+                                      isActive(item.href) ? "text-blue-600 bg-white" : "text-blue-500 bg-blue-50"
+                                    )}
+                                  >
+                                    {item.icon}
+                                  </div>
+                                  <span className="text-sm font-medium leading-tight">{item.title}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
                         )}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {openSubmenu === "services" && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pl-4 pr-2 pb-2 pt-1 space-y-1">
-                            {services.map((item, idx) => (
-                              <Link
-                                key={idx}
-                                to={item.href}
-                                onClick={() => setIsOpen(false)}
-                                className={cn(
-                                  "flex items-center gap-3 p-2.5 rounded-lg transition-colors",
-                                  isActive(item.href)
-                                    ? "bg-blue-50 text-blue-700"
-                                    : "hover:bg-blue-50 text-slate-600 hover:text-blue-700"
-                                )}
-                              >
-                                <div
+                      </AnimatePresence>
+                    </motion.div>
+
+                    {/* Services Accordion */}
+                    <motion.div variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }} className="space-y-1">
+                      <button
+                        onClick={() => toggleSubmenu("services")}
+                        className={cn(
+                          "w-full flex items-center justify-between p-3.5 rounded-xl font-heading font-semibold text-lg transition-colors",
+                          openSubmenu === "services"
+                            ? "bg-slate-50 text-blue-600"
+                            : "text-slate-800 hover:bg-slate-50"
+                        )}
+                      >
+                        <span>Services</span>
+                        <ChevronDown
+                          className={cn(
+                            "w-5 h-5 transition-transform duration-200",
+                            openSubmenu === "services" ? "rotate-180 text-blue-500" : "text-slate-400"
+                          )}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {openSubmenu === "services" && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-4 pr-2 pb-2 pt-1 space-y-1">
+                              {services.map((item, idx) => (
+                                <Link
+                                  key={idx}
+                                  to={item.href}
+                                  onClick={() => setIsOpen(false)}
                                   className={cn(
-                                    "p-1.5 rounded-md shrink-0",
-                                    isActive(item.href) ? "text-blue-600 bg-white" : "text-blue-500 bg-blue-50"
+                                    "flex items-center gap-3 p-2.5 rounded-lg transition-colors",
+                                    isActive(item.href)
+                                      ? "bg-blue-50 text-blue-700"
+                                      : "hover:bg-blue-50 text-slate-600 hover:text-blue-700"
                                   )}
                                 >
-                                  {item.icon}
-                                </div>
-                                <span className="text-sm font-medium leading-tight">{item.title}</span>
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-
-                  <motion.div variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }}>
-                    <Link
-                      to="/career"
-                      onClick={() => setIsOpen(false)}
-                      className={cn(
-                        "flex items-center justify-between p-3.5 rounded-xl font-heading font-semibold text-lg transition-colors group",
-                        isActive("/career")
-                          ? "bg-blue-50 text-blue-600"
-                          : "hover:bg-blue-50/50 text-slate-800"
-                      )}
-                    >
-                      Career
-                      <ArrowRight
-                        className={cn(
-                          "w-4 h-4 transition-colors",
-                          isActive("/career") ? "text-blue-600" : "text-slate-300 group-hover:text-blue-500"
+                                  <div
+                                    className={cn(
+                                      "p-1.5 rounded-md shrink-0",
+                                      isActive(item.href) ? "text-blue-600 bg-white" : "text-blue-500 bg-blue-50"
+                                    )}
+                                  >
+                                    {item.icon}
+                                  </div>
+                                  <span className="text-sm font-medium leading-tight">{item.title}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
                         )}
-                      />
-                    </Link>
-                  </motion.div>
-                </motion.div>
-              </div>
+                      </AnimatePresence>
+                    </motion.div>
 
-              {/* Footer */}
-              <div className="flex-none p-5 border-t border-slate-100/50 bg-slate-50/50 backdrop-blur-sm">
-                <Link to="/contact" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full bg-[#2C6BED] hover:bg-[#2356bd] text-white font-heading text-base py-6 shadow-lg shadow-blue-500/20 rounded-xl transition-all active:scale-[0.98]">
-                    Contact Us
-                  </Button>
-                </Link>
-                <p className="text-center text-xs text-slate-400 mt-4 font-medium">
-                  © 2025 MoviCloud Labs
-                </p>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                    <motion.div variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }}>
+                      <Link
+                        to="/career"
+                        onClick={() => setIsOpen(false)}
+                        className={cn(
+                          "flex items-center justify-between p-3.5 rounded-xl font-heading font-semibold text-lg transition-colors group",
+                          isActive("/career")
+                            ? "bg-blue-50 text-blue-600"
+                            : "hover:bg-blue-50/50 text-slate-800"
+                        )}
+                      >
+                        Career
+                        <ArrowRight
+                          className={cn(
+                            "w-4 h-4 transition-colors",
+                            isActive("/career") ? "text-blue-600" : "text-slate-300 group-hover:text-blue-500"
+                          )}
+                        />
+                      </Link>
+                    </motion.div>
+                  </motion.div>
+                </div>
+
+                {/* Footer */}
+                <div className="flex-none p-5 border-t border-slate-100/50 bg-slate-50/50 backdrop-blur-sm">
+                  <Link to="/contact" onClick={() => setIsOpen(false)}>
+                    <Button className="w-full bg-[#2C6BED] hover:bg-[#2356bd] text-white font-heading text-base py-6 shadow-lg shadow-blue-500/20 rounded-xl transition-all active:scale-[0.98]">
+                      Contact Us
+                    </Button>
+                  </Link>
+                  <p className="text-center text-xs text-slate-400 mt-4 font-medium">
+                    © 2025 MoviCloud Labs
+                  </p>
+                </div>
+              </motion.div>
+            </>
+          )
+        }
+      </AnimatePresence >
     </nav >
   );
 };

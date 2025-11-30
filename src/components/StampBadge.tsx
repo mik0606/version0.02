@@ -17,7 +17,7 @@ const StampBadge = () => {
                 className="relative w-52 h-52 flex items-center justify-center animate-spin-rotate"
             >
                 <img
-                    src="/Stamp.png"
+                    src="/Stamp.webp"
                     alt="Official Stamp"
                     className="w-full h-full object-contain drop-shadow-md"
                 />
