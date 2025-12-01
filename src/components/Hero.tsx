@@ -66,7 +66,7 @@ export const Hero = () => {
               transition={{ duration: 1, delay: 0.3 }}
               className="font-inter text-lg md:text-xl text-[#6B7280] max-w-xl leading-relaxed"
             >
-              Building Intelligent Enterprise Solutions Powered by Advanced Analytics and AI
+
               MoviCloud Labs is your trusted partner for next-generation digital transformation. We design secure, scalable, and custom cloud environments that drive innovation and efficiency. Leveraging deep expertise in predictive analytics and AI, we build smart, cloud-native enterprise platforms that intelligently optimize operations and accelerate business performance.
             </motion.p>
 
