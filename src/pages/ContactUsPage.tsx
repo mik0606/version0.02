@@ -306,8 +306,8 @@ const ContactUs = () => {
                 </div>
             </section>
 
-            {/* Global Offices Section - Compacted */}
-            <section className="py-16 bg-slate-900 text-white">
+            {/* Global Offices Section - Compacted (Hidden) */}
+            {/* <section className="py-16 bg-slate-900 text-white">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-10">
                         <h2 className="text-2xl font-bold mb-3 font-display">Global Presence</h2>
@@ -340,7 +340,7 @@ const ContactUs = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <Footer />
         </div>

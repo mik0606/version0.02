@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { before } from "node:test";
 
 /* ----------------------------- ITEM COMPONENT ----------------------------- */
 const ListItem = React.forwardRef<
@@ -112,14 +113,14 @@ export const Navigation = () => {
   const isActive = (path: string) => pathname === path;
 
   const industries = [
-    { title: "Hospital Management", href: "/products/hospital", icon: <Stethoscope className="w-4 h-4" /> },
-    { title: "Transport Management", href: "/products/transport", icon: <Truck className="w-4 h-4" /> },
-    { title: "Office / Work Management", href: "/products/office", icon: <Briefcase className="w-4 h-4" /> },
-    { title: "School & Alumni", href: "/products/school", icon: <GraduationCap className="w-4 h-4" /> },
-    { title: "E-commerce Inventory", href: "/products/ecommerce", icon: <ShoppingCart className="w-4 h-4" /> },
-    { title: "Hotel & Hospitality", href: "/products/hotel", icon: <Hotel className="w-4 h-4" /> },
-    { title: "Survey System", href: "/products/survey", icon: <ClipboardList className="w-4 h-4" /> },
-    { title: "Marketing Suite", href: "/products/marketing", icon: <Megaphone className="w-4 h-4" /> },
+    { title: "Hospital Management", href: "/products/hospital", icon: <Stethoscope className="w-4 h-4" />, description: "AI-powered Hospital Management System that streamlines clinical workflows and enhances decision-making." },
+    { title: "Transport Management", href: "/products/transport", icon: <Truck className="w-4 h-4" />, description: "Optimize fleet operations with real-time GPS tracking, intelligent route planning, and AI-powered predictive maintenance." },
+    { title: "Office / Work Management", href: "/products/office", icon: <Briefcase className="w-4 h-4" />, description: "Empower your team with intelligent task management, seamless collaboration, and AI-driven productivity insights." },
+    { title: "School & Alumni", href: "/products/school", icon: <GraduationCap className="w-4 h-4" />, description: "Empower educators and students with AI-driven learning analytics and enhanced parent engagement." },
+    { title: "E-commerce Inventory", href: "/products/ecommerce", icon: <ShoppingCart className="w-4 h-4" />, description: "AI-driven inventory tracking with smart forecasting, automated restocking, and live performance insights.Operate with precision." },
+    { title: "Hotel & Hospitality", href: "/products/hotel", icon: <Hotel className="w-4 h-4" />, description: "AI-powered hospitality suite with streamlined bookings, enhanced guest services and  revenue intelligence." },
+    { title: "Survey System", href: "/products/survey", icon: <ClipboardList className="w-4 h-4" />, description: "feedback platform delivering real-time analytics. Decode audience emotions and elevate your decision-making" },
+    { title: "Marketing Suite", href: "/products/marketing", icon: <Megaphone className="w-4 h-4" />, description: "Complete marketing platform with AI-powered SEO, social media automation and content creation" },
   ];
 
   const services = [
@@ -186,8 +187,7 @@ export const Navigation = () => {
                             icon={item.icon}
                             active={isActive(item.href)}
                           >
-                            {/* Description placeholder - ideally this comes from the data object */}
-                            Comprehensive solution for {item.title.toLowerCase()}.
+                            {item.description}
                           </ListItem>
                         ))}
                       </ul>

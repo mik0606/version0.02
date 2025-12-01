@@ -320,7 +320,7 @@ const Ecommerce = () => {
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Complete Inventory Control</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-heading text-slate-900 mb-4">Complete Inventory Control</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">From warehouse to doorstep, manage every aspect of your e-commerce logistics in one place.</p>
           </div>
 
@@ -398,7 +398,7 @@ const Ecommerce = () => {
                     <div className="p-4 bg-white/20 backdrop-blur-md rounded-full mb-4 border border-white/30 shadow-lg">
                       {feature.icon}
                     </div>
-                    <h3 className="text-2xl font-bold mb-2 tracking-tight drop-shadow-lg">{feature.title}</h3>
+                    <h3 className="text-2xl font-bold font-heading mb-2 tracking-tight drop-shadow-lg">{feature.title}</h3>
                     <p className="text-teal-50 max-w-xs leading-relaxed drop-shadow-md font-medium">{feature.desc}</p>
                   </div>
                 </div>
