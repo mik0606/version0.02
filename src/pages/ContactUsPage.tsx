@@ -64,7 +64,7 @@ const ContactUs = () => {
     ];
 
     return (
-        <div className="h-screen overflow-hidden bg-slate-50 font-sans selection:bg-sky-100 selection:text-sky-900 flex flex-col">
+        <div className="min-h-screen bg-slate-50 font-sans selection:bg-sky-100 selection:text-sky-900 flex flex-col">
             <Navigation />
 
             {/* Main Content Container */}
@@ -90,7 +90,7 @@ const ContactUs = () => {
                 <div className="grid lg:grid-cols-12 gap-4 lg:gap-8 items-start grow-0">
 
                     {/* Left Column: Contact Options */}
-                    <div className="lg:col-span-5 space-y-4 flex flex-col justify-center h-full">
+                    <div className="lg:col-span-5 space-y-4 flex flex-col h-full">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -176,7 +176,7 @@ const ContactUs = () => {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="bg-white rounded-xl shadow-lg shadow-slate-200/50 border border-slate-100 p-4"
+                            className="bg-white rounded-xl shadow-lg shadow-slate-200/50 border border-slate-100 p-4 md:p-6"
                         >
                             {submitted ? (
                                 <div className="text-center py-12">
@@ -204,7 +204,7 @@ const ContactUs = () => {
                                                 required
                                                 value={formData.firstName}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-1 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
+                                                className="w-full px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
                                                 placeholder="Jane"
                                             />
                                         </div>
@@ -217,7 +217,7 @@ const ContactUs = () => {
                                                 required
                                                 value={formData.lastName}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-1 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
+                                                className="w-full px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
                                                 placeholder="Doe"
                                             />
                                         </div>
@@ -232,7 +232,7 @@ const ContactUs = () => {
                                             required
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            className="w-full px-3 py-1 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
+                                            className="w-full px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
                                             placeholder="jane@company.com"
                                         />
                                     </div>
@@ -247,7 +247,7 @@ const ContactUs = () => {
                                                 required
                                                 value={formData.company}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-1 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
+                                                className="w-full px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
                                                 placeholder="Acme Inc."
                                             />
                                         </div>
@@ -259,7 +259,7 @@ const ContactUs = () => {
                                                 name="phone"
                                                 value={formData.phone}
                                                 onChange={handleInputChange}
-                                                className="w-full px-3 py-1 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
+                                                className="w-full px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all text-sm font-sans"
                                                 placeholder="+1 (555) 000-0000"
                                             />
                                         </div>
@@ -272,7 +272,7 @@ const ContactUs = () => {
                                             name="type"
                                             value={formData.type}
                                             onChange={handleInputChange}
-                                            className="w-full px-3 py-1 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all appearance-none text-sm font-sans"
+                                            className="w-full px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all appearance-none text-sm font-sans"
                                         >
                                             <option value="sales">Sales Inquiry</option>
                                             <option value="support">Product Support</option>
@@ -290,7 +290,7 @@ const ContactUs = () => {
                                             rows={2}
                                             value={formData.message}
                                             onChange={handleInputChange}
-                                            className="w-full px-3 py-1 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all resize-none text-sm font-sans"
+                                            className="w-full px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 focus:border-sky-500 focus:ring-1 focus:ring-sky-200 outline-none transition-all resize-none text-sm font-sans"
                                             placeholder="Tell us about your project needs..."
                                         />
                                     </div>
