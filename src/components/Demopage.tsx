@@ -90,7 +90,7 @@ const DemoPage = () => {
                             Live Product Tour
                         </div>
                         <h1 className="text-xl md:text-2xl font-bold text-slate-900 mb-0.5 tracking-tight font-display">
-                            See MoviCloud in Action
+                            See MoviCloud Labs in Action
                         </h1>
                         <p className="text-[10px] text-slate-600 leading-snug font-sans max-w-lg mx-auto">
                             {productFromNav ? (
@@ -146,7 +146,7 @@ const DemoPage = () => {
                                     transition={{ delay: 0.3 }}
                                     className="pt-2 border-t border-slate-200"
                                 >
-                                    <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 font-sans">Trusted by 500+ Enterprises</p>
+                                    <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-1 font-sans">Trusted by  Enterprises</p>
                                     <div className="grid grid-cols-3 gap-x-2 gap-y-1 opacity-50 grayscale">
                                         <div className="h-3 flex items-center font-bold text-slate-800 text-[9px]">Acme</div>
                                         <div className="h-3 flex items-center font-bold text-slate-800 text-[9px]">Global</div>
